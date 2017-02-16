@@ -56,7 +56,7 @@ class AdminController {
 
     def ontology(){
         def ctx = grailsApplication.mainContext
-        def path = ctx.servletContext.getRealPath("/")
+        def path = ctx.servletContext.getRealPath('/')
         def response = [:]
         def valid = true
         Map yaml
@@ -145,9 +145,8 @@ class AdminController {
 
     def ontologyReset(){
         def ctx = grailsApplication.mainContext
-        def path = ctx.servletContext.getRealPath("/")
+        def path = ctx.servletContext.getRealPath('/')
         def response = [:]
-
     }
 
     def ontologyAsJSON(){
@@ -168,20 +167,15 @@ class AdminController {
             def file = ctx.getResource('dsl/'+params['id']+'.groovy').file
             if(file.exists())
                 file.write(params['code'],'utf-8')
-
             if(params['id']=='main')
                 response = dsl.reload(file.text)
-            if(params['id']=='gui'){
+            if(params['id']=='gui')
                 response = gui.reload(file.text)
-            }
         }
-
         render response as XML
     }
 
-    def dslsReset(){
-
-    }
+    def dslsReset(){}
 
     def getDsl(){
         def ctx = grailsApplication.mainContext
@@ -189,9 +183,8 @@ class AdminController {
 
         if(params.id){
             def file = ctx.getResource('dsl/'+params.id+'.groovy').file
-            if(file.exists()){
+            if(file.exists())
                 code = file.text
-            }
         }
         render code
     }
@@ -225,10 +218,8 @@ class AdminController {
             def file = ctx.getResource('dsl/views/'+params['id']+'.groovy').file
             if(file.exists())
                 file.write(params['code'],'utf-8')
-
             response.status = 'ok'
         }
-
         render response as XML
     }
 
@@ -238,7 +229,6 @@ class AdminController {
         file.write(ctx.getResource('dsl/views/analysis.groovy').file.text,'utf-8')
 
         //def response = gui.reload(file.text)
-
         redirect(action: 'index')
     }
 
@@ -248,9 +238,8 @@ class AdminController {
 
         if(params.id){
             def file = ctx.getResource('dsl/views/'+params.id+'.groovy').file
-            if(file.exists()){
+            if(file.exists())
                 code = file.text
-            }
         }
         render code
     }
@@ -266,16 +255,12 @@ class AdminController {
             def file = patternResolver.getResource(files[lang]).file
             if(file.exists())
                 file.write(params['code'],'utf-8')
-
             response.status = 'ok'
         }
-
         render response as XML
     }
 
-    def langsReset(){
-
-    }
+    def langsReset(){}
 
     def getLang(){
         def patternResolver = new PathMatchingResourcePatternResolver()
@@ -284,9 +269,8 @@ class AdminController {
 
         if(params.id){
             def file = patternResolver.getResource(files[params.id]).file
-            if(file.exists()){
+            if(file.exists())
                 code = file.text
-            }
         }
         render code
     }
@@ -296,47 +280,38 @@ class AdminController {
 
         if(params.id_base != params.id){
             def labels = [:]
-
             params.each{ key, value ->
-                if(key.startsWith('label@')) {
+                if(key.startsWith('label@'))
                     labels[key.substring(key.indexOf('@')+1)] = value
-                }
             }
-
-            String sparql = "<"+ k.toURI(":" + params.id) +">"+
+            String sparql = "<${k.toURI(":" + params.id)}>" +
                     " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
-                    " rdfs:subClassOf <"+ k.toURI(":" + params.attribute) +">; "+
+                    " rdfs:subClassOf <${k.toURI(":" + params.attribute)}>; "+
                     " rdf:type owl:Class; "+
                     " rdf:type owl:NamedIndividual; "+
-                    " <http://bio.icmc.usp.br/sustenagro#weight> \""+params.weight+"\"^^xsd:double; "
-
+                    " <http://bio.icmc.usp.br/sustenagro#weight> \"${params.weight}\"^^xsd:double; "
             labels.each{ key, value ->
-                sparql += " rdfs:label \""+value+"\"@"+key+"; "
+                sparql += " rdfs:label \"$value\"@"+key+"; "
             }
-
             sparql += " rdfs:subClassOf _:b. "+
                     " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
-
             //println sparql
-
             k.insert(sparql)
-
             //k.delete()
         }
-        else{
+        else {
             def indicator = k[id].getIndicator()
             Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
 
             def lang
-
             indicator[0].each{ key, value ->
                 if(indicator[0][key] != params[key]){
                     if(key.startsWith('label')){
                         lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
                         k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
-                                "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \""+params[key]+"\"@$lang}\n" +
-                                "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \nFILTER (lang(?label) = '$lang')}")
-
+                                 "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \"${params[key]}\"@$lang}\n" +
+                                 "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \n" +
+                                 "FILTER (lang(?label) = '$lang')}")
                     }
                 }
             }
@@ -346,12 +321,10 @@ class AdminController {
         render respond as JSON
     }
 
-    def indicatorsReset(){
-
-    }
+    def indicatorsReset(){}
 
     def attributes(){
-        def attr = k[':'+params['dimension']].getAttributes()
+        def attr = k[':'+params['dimension']].attributes
         //println attr
 
         Uri.simpleDomain(attr, 'http://bio.icmc.usp.br/sustenagro#')
@@ -362,32 +335,28 @@ class AdminController {
     def indicatorForm(){
         def id = params['id']
         def data = [:]
-        def result = Uri.simpleDomain(k[':'+id].getIndicator(), "http://bio.icmc.usp.br/sustenagro#", '')
+        def result = Uri.simpleDomain(k[':'+id].indicator, "http://bio.icmc.usp.br/sustenagro#", '')
 
         //println result
 
         if(result.size() == 1){
             data['indicator'] = result[0]
             data['indicator']['id'] = id
-            data['valuetypes'] = Uri.simpleDomain(k[':Value'].getDataValues(), "http://bio.icmc.usp.br/sustenagro#", '')
-            data['dimensions'] = Uri.simpleDomain(k[':Indicator'].getDimensions(), "http://bio.icmc.usp.br/sustenagro#", '')
+            data['valuetypes'] = Uri.simpleDomain(k[':Value'].dataValues, 'http://bio.icmc.usp.br/sustenagro#', '')
+            data['dimensions'] = Uri.simpleDomain(k[':Indicator'].dimensions, 'http://bio.icmc.usp.br/sustenagro#', '')
             data['attributes'] = [:]
             data['options'] = [:]
 
             data['dimensions'].each{
-                data['attributes'][it.id] = Uri.simpleDomain(k[':'+it.id].getAttributes(), "http://bio.icmc.usp.br/sustenagro#", '')
+                data['attributes'][it.id] = Uri.simpleDomain(k[':'+it.id].attributes, 'http://bio.icmc.usp.br/sustenagro#', '')
             }
 
             data['valuetypes'].each{
-                data['options'][it.valuetype] = Uri.simpleDomain(k[':'+it.valuetype].getOptions(), "http://bio.icmc.usp.br/sustenagro#", '')
+                data['options'][it.valuetype] = Uri.simpleDomain(k[':'+it.valuetype].options, 'http://bio.icmc.usp.br/sustenagro#', '')
             }
 
-            if(data['indicator']['valuetype'] == 'Real'){
-
-            }
-            else{
-
-            }
+            if(data['indicator']['valuetype'] == 'Real'){}
+            else {}
         }
 
         render( template: '/widgets/indicatorForm',
@@ -405,7 +374,7 @@ class AdminController {
         def commands = ['title', 'data', 'description', 'features', 'show', 'instance', 'subclass', 'matrix', 'map', 'dimension', 'prog', 'sum', 'average']
 
         if(params['word']){
-            def cmds = commands.findAll{ it.contains(params['word']) }
+            def cmds = commands.findAll{ params['word'] in it}
             def identifiers = k[':Indicator'].selectSubject(params.word)
             Uri.simpleDomain(identifiers,'http://bio.icmc.usp.br/sustenagro#','')
             def labels = k[':Indicator'].findByLabel(params.word)
@@ -413,9 +382,8 @@ class AdminController {
             identifiers.each{list.push(['name': it.s, 'value': it.s, 'score': 2000, 'meta': 'identifier'])}
             labels.each{list.push(['name': it.label, 'value': it.label, 'score': 2000, 'meta': 'label'])}
         }
-        else{
+        else
             commands.each{list.push(['name': it, 'value': it, 'score': 2000, 'meta': 'command'])}
-        }
 
         render list as JSON
     }

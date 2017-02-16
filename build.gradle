@@ -43,7 +43,8 @@ plugins {
 version "1.0"
 group "sustenagro"
 
-apply plugin: "spring-boot"
+//apply plugin: "spring-boot"
+apply plugin: "org.springframework.boot"
 apply plugin: "war"
 apply plugin: "asset-pipeline"
 apply plugin: 'eclipse'
@@ -86,7 +87,9 @@ dependencies {
 
     compile "org.grails.plugins:spring-security-core:3.0.4"
     compile "org.grails.plugins:cache"
-    compile "org.grails.plugins:hibernate4:5.0.8"
+    compile "org.grails.plugins:hibernate5"
+    //compile "org.grails.plugins:hibernate4"
+    //:5.0.8
     //compile 'org.grails.plugins:cookie-session:3.0.1'
 
 

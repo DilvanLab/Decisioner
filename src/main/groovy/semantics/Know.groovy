@@ -100,11 +100,11 @@ class Know {
     }
 
     def removeAll(String data){
-        delete("?s ?p ?o")
+        delete('?s ?p ?o')
     }
 
     def toURI(String id){
-        if (id==null || id == '' ) return null
+        if (id==null || id == '') return null
         if (id == ':') return _prefixes['']
         if (!id.contains(' ')){
             if (id.startsWith('_:')) return id
@@ -119,10 +119,8 @@ class Know {
             }
             println 'prexixes analyse: '+id
             if (!id.contains(':')) return searchByLabel(id)
-        }
-        else{
+        } else
             return null
-        }
     }
 
     def fromURI(String uidri){
@@ -144,10 +142,8 @@ class Know {
                 def prefix = searchPrefix(id)
                 return prefix.alias+'-'+id.replace(prefix.uri,'')
             }
-        }
-        else{
+        } else
             return null
-        }
     }
 
     def shortToURI(String id){
@@ -158,13 +154,10 @@ class Know {
             if (id.contains('-')){
                 def prefix = searchPrefix(id)
                 return prefix.uri+id.substring(id.indexOf('-')+1)
-            }
-            else
+            } else
                 return '_:'+id
-        }
-        else{
+        } else
             return null
-        }
     }
 
     def searchByLabel(name){
@@ -230,12 +223,11 @@ class Know {
     }
 
     def isURI(Object id){
-        if(id.getClass() == String){
-            if(id != null && id != '' && !id.contains(" ") && id.startsWith('http://'))
-                return true
-            return false
-        }
-        else if(id.getClass().isArray()){
+        if(id in String)
+            return (id != null && id != '' && !id.contains(" ") && id.startsWith('http://'))
+            //    return true
+            //return false
+        else if(id.class.isArray()){
             def isArray = true
             id.each{
                 isArray = (it != null && it != '' && !it.contains(" ") && it.startsWith('http://')) ? isArray && true : isArray && false

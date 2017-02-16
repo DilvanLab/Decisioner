@@ -52,9 +52,8 @@ class UserController {
 
         if( params[usernameURI] && params[passwordURI] && params[passwordURI] == params[passwordConfirmURI] && params[termsofuseURI] == 'yes'){
             params.each{
-                if(it.key == passwordURI){
+                if(it.key == passwordURI)
                     properties[it.key] = [value: springSecurityService.encodePassword(it.value), dataType: k[it.key].range]
-                }
                 else if(it.key.startsWith(base) && it.key != passwordConfirmURI && it.key != termsofuseURI)
                     properties[it.key] = [value: it.value, dataType: k[it.key].range]
             }
