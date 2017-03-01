@@ -455,7 +455,7 @@ SustainabilityIndicator:
 # Descendentes de SustainabilityIndicator
 
 RiskExposureFactors:
-  is_a: SustainabilityIndicator
+  is_a: Indicator
   label: [Fatores de expocisao ao Risco @pt, Risk exposure factors @en]
   value: Categorical
 

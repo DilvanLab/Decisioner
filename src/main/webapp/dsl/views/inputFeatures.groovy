@@ -25,8 +25,11 @@ form([action: '/tool/createAnalysis', formClass: ''], [
         ['widget': 'tab', attrs: [label: message('efficiencyAssessment')], widgets: [
                 ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: message('default.paginate.next')], widgets: efficiencyTabs]
         ]],
+        ['widget': 'tab', attrs: [label: message('riskAssessment')], widgets: [
+                ['widget': 'tabs', attrs: [id : 'risk', finalPag: 'risk_tab_1', finalPagLabel: message('default.paginate.next')], widgets: riskTabs]
+        ]],
         ['widget': 'tab', attrs: [label: message('sustainabilityAssessment')], widgets: [
-                ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_1', initialPagLabel: message('default.paginate.prev')], widgets: sustainabilityTabs]
+                ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_2', initialPagLabel: message('default.paginate.prev')], widgets: sustainabilityTabs]
         ]]
     ]]
 ])

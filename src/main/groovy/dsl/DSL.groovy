@@ -154,6 +154,7 @@ class DSL {
     }
 
     def feature(Map attrs, String id, Closure closure = {}){
+
         String uri = _k.toURI(id)
         def feature = new Feature(uri, attrs, _ctx)
 
