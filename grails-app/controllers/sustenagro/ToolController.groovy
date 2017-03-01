@@ -147,6 +147,7 @@ class ToolController {
         def uri = k.toURI('inds:' + params.id)
         def sustainabilityTabs = []
         def efficiencyTabs = []
+        def riskTabs = []
         def roles = k['inds:' + username].getAttr('hasRole')
         def evalObjId = params.id
         def analysisId = evalObjId+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
@@ -184,6 +185,8 @@ class ToolController {
                     efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
                 else if (feature.getModel(evalObjId).superClass.contains(k.toURI(':SustainabilityIndicator')))
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
+                else if (feature.getModel(evalObjId).superClass.contains(k.toURI(':RiskExposureFactors')))
+                    riskTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
             _gui.setView(controllerName, actionName)
@@ -196,6 +199,7 @@ class ToolController {
             _gui.setData('uri', uri)
             _gui.setData('efficiencyTabs', efficiencyTabs)
             _gui.setData('sustainabilityTabs', sustainabilityTabs)
+            _gui.setData('riskTabs', riskTabs)
             _gui.renderView(actionName)
 
             //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
@@ -361,6 +365,7 @@ class ToolController {
         if(userId && evalObjId && analysisId) {
             def sustainabilityTabs = []
             def efficiencyTabs = []
+            def riskTabs = []
             def id
             def res
             def extra
@@ -429,6 +434,8 @@ class ToolController {
                     efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
                 if (feature.getModel(evalObjId).superClass.contains(k.toURI(':SustainabilityIndicator')))
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
+                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':RiskExposureFactors')))
+                    riskTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
             //Uri.printTree(values)
@@ -449,6 +456,7 @@ class ToolController {
             _gui.setData('dataReader', dsl.getData('data'))
             _gui.setData('sustainabilityTabs', sustainabilityTabs)
             _gui.setData('efficiencyTabs', efficiencyTabs)
+            _gui.setData('riskTabs', efficiencyTabs)
             _gui.setData('reportView', dsl.getReportView())
 
             _gui.renderView(actionName)

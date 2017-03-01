@@ -49,7 +49,7 @@ class Node {
         this.patterns['updateAt']   = " ui:updateAt ?updateAt. "
         this.patterns['hasUsername']= " ui:hasUsername ?hasUsername. "
         this.patterns['hasPassword']= " ui:hasPassword ?hasPassword. "
-        this.patterns['harvestYear']= " :harvestYear ?harvestYear. "
+        //this.patterns['harvestYear']= " :harvestYear ?harvestYear. "
 
         //owl:TransitiveProperty
 
@@ -489,6 +489,7 @@ class Node {
     }
 
     def getEvaluationObject(String args){
+        print 'ENTROU AQUI'
         def argsList = args.split(' ')
 
         def query = "<$URI> :appliedTo ?ins."

@@ -174,6 +174,7 @@ class SparqlBase extends Sparql{
         try{
             query = QueryFactory.create(sparql, Syntax.syntaxARQ)
             qe = QueryExecutionFactory.sparqlService(endpoint, query)
+
         }
         catch (all){
             println 'Exception: '+all
