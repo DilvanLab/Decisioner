@@ -65,15 +65,15 @@ class Know {
         getAt(name)
     }
 
-    def getAt(String name){
+    Node getAt(String name){
         findNode(name)
     }
 
-    def findNode(String name){
+    Node findNode(String name){
         new Node(this, toURI(name))
     }
 
-    def select(str){
+    Know select(str){
         select = str
         this
     }

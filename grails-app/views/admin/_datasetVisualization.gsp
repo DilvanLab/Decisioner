@@ -15,19 +15,30 @@
   under the License.
   -->
 
-<asset:javascript src="dataset-viewer/js/client.js"/>
+<!--asset:javascript src="dataset-viewer/js/client.js"/-->
 
+<script src="/assets/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<!--asset:javascript src="bower_components/webcomponentsjs/webcomponents-lite.js"/-->
+
+<link rel="import" href="/assets/bower_components/evaluation-filter/evaluation-filter.html">
+<!--asset:javascript src="bower_components/evaluation-filter/evaluation-filter.html"/-->
+<!--link href="${assetPath(src: 'bower_components/evaluation-filter/evaluation-filter.html')}"/-->
 <div>
+    <div>
+        <evaluation-filter></evaluation-filter>
+    </div>
     <p>Type3</p>
     <div id="app">
         <h1>Dicom Roi Editor</h1>
     </div>
 
     <script type="application/javascript">
-        window.onload = function () {
-            datasetViewer.core.run();
-            //resizeCanvas();
-        };
+
+//        window.onload = function () {
+//            datasetViewer.core.run();
+//            //resizeCanvas();
+//        };
+
 //        function resizeCanvas() {
 //            const divs = document.getElementsByClassName("editor-holder");
 //            for (let i=0; i<divs.length; i++) {

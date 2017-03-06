@@ -23,6 +23,7 @@ import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import org.springframework.core.io.Resource
 import semantics.DataReader
+import semantics.Know
 import utils.Uri
 
 /**
@@ -34,7 +35,7 @@ import utils.Uri
 
 class DSL {
     private _ctx
-    private _k
+    private Know _k
     private _gui
     private static _md
 
@@ -69,10 +70,10 @@ class DSL {
         _sandbox.register()
 
         // Configure the GroovyShell and pass the compiler configuration.
-        //_shell = new GroovyShell(this.class.classLoader, binding, cc)
+        //dslInter = new GroovyShell(this.class.classLoader, binding, cc)
         //println _ctx.getResource(filename).getFile().text
 
-        //_script = (DelegatingScript) _shell.parse(new File(filename).text)
+        //_script = (DelegatingScript) dslInter.parse(new File(filename).text)
         //println _ctx.getBean('path')
         //println new File(_ctx.getBean('path')+filename).toString()
 

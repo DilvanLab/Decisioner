@@ -48,6 +48,10 @@ class ToolController {
     def slugify
     def springSecurityService
 
+    /**
+     * Read the interface DSL and returns the HTML
+     * @return
+     */
     def evaluationObject() {
         //println session.getClass()
         //println "Timeout: ${session.getMaxInactiveInterval()} seconds"

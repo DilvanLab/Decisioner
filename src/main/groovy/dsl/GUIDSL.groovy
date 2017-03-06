@@ -23,6 +23,7 @@ import org.grails.io.support.PathMatchingResourcePatternResolver
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
+import semantics.Know
 import utils.Uri
 
 /**
@@ -36,7 +37,7 @@ class GUIDSL {
     private _sandbox
     private _script
     private _ctx
-    private _k
+    private Know _k
     private _widgetAttrs
     private contanst
     private _controller
@@ -82,10 +83,10 @@ class GUIDSL {
         _sandbox.register()
 
         // Configure the GroovyShell and pass the compiler configuration.
-        //_shell = new GroovyShell(this.class.classLoader, binding, cc)
+        //dslInter = new GroovyShell(this.class.classLoader, binding, cc)
         _ctx = applicationContext
 
-        //_script = (DelegatingScript) _shell.parse(new File(filename).text)
+        //_script = (DelegatingScript) dslInter.parse(new File(filename).text)
         //println new File(_ctx.getBean('path')+filename).toString()
 
         _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
@@ -566,7 +567,7 @@ class GUIDSL {
 
     def renderView(String name){
         _sandbox.register()
-        //        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
+        //        _script = (DelegatingScript) dslInter.parse(new File("dsl/views/${name}.groovy").text)
 
         _script = (DelegatingScript) _shell.parse(_ctx.getResource("dsl/views/${name}.groovy").file)
         _script.setDelegate(this)

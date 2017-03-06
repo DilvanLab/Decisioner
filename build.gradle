@@ -117,6 +117,8 @@ dependencies {
     //compile 'com.github.albaker:GroovySparql:0.9.0'       //Compilation Error
     compile 'com.github.DilvanLab:GroovySparql:0.9.1'
 
+    compile 'org.organicdesign:Paguro:2.0.20'
+    compile 'org.pcollections:pcollections:2.1.2'
     //profile "org.grails.profiles:web:3.1.1"
 
     runtime "org.grails.plugins:asset-pipeline:3.1.1"

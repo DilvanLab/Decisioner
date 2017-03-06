@@ -175,7 +175,12 @@ class AdminController {
         render response as XML
     }
 
-    def dslsReset(){}
+    //def dslsReset(){}
+
+    def testt() {
+        println "Controller called"
+        redirect(action: 'index')
+    }
 
     def getDsl(){
         def ctx = grailsApplication.mainContext
@@ -260,7 +265,7 @@ class AdminController {
         render response as XML
     }
 
-    def langsReset(){}
+    //def langsReset(){}
 
     def getLang(){
         def patternResolver = new PathMatchingResourcePatternResolver()
@@ -275,99 +280,99 @@ class AdminController {
         render code
     }
 
-    def updateIndicator(){
-        def id = params.id_base
-
-        if(params.id_base != params.id){
-            def labels = [:]
-            params.each{ key, value ->
-                if(key.startsWith('label@'))
-                    labels[key.substring(key.indexOf('@')+1)] = value
-            }
-            String sparql = "<${k.toURI(":" + params.id)}>" +
-                    " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
-                    " rdfs:subClassOf <${k.toURI(":" + params.attribute)}>; "+
-                    " rdf:type owl:Class; "+
-                    " rdf:type owl:NamedIndividual; "+
-                    " <http://bio.icmc.usp.br/sustenagro#weight> \"${params.weight}\"^^xsd:double; "
-            labels.each{ key, value ->
-                sparql += " rdfs:label \"$value\"@"+key+"; "
-            }
-            sparql += " rdfs:subClassOf _:b. "+
-                    " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
-            //println sparql
-            k.insert(sparql)
-            //k.delete()
-        }
-        else {
-            def indicator = k[id].getIndicator()
-            Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
-
-            def lang
-            indicator[0].each{ key, value ->
-                if(indicator[0][key] != params[key]){
-                    if(key.startsWith('label')){
-                        lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
-                        k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
-                                 "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \"${params[key]}\"@$lang}\n" +
-                                 "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \n" +
-                                 "FILTER (lang(?label) = '$lang')}")
-                    }
-                }
-            }
-        }
-        def respond = ['result': 'ok']
-
-        render respond as JSON
-    }
-
-    def indicatorsReset(){}
-
-    def attributes(){
-        def attr = k[':'+params['dimension']].attributes
-        //println attr
-
-        Uri.simpleDomain(attr, 'http://bio.icmc.usp.br/sustenagro#')
-
-        render attr as XML
-    }
-
-    def indicatorForm(){
-        def id = params['id']
-        def data = [:]
-        def result = Uri.simpleDomain(k[':'+id].indicator, "http://bio.icmc.usp.br/sustenagro#", '')
-
-        //println result
-
-        if(result.size() == 1){
-            data['indicator'] = result[0]
-            data['indicator']['id'] = id
-            data['valuetypes'] = Uri.simpleDomain(k[':Value'].dataValues, 'http://bio.icmc.usp.br/sustenagro#', '')
-            data['dimensions'] = Uri.simpleDomain(k[':Indicator'].dimensions, 'http://bio.icmc.usp.br/sustenagro#', '')
-            data['attributes'] = [:]
-            data['options'] = [:]
-
-            data['dimensions'].each{
-                data['attributes'][it.id] = Uri.simpleDomain(k[':'+it.id].attributes, 'http://bio.icmc.usp.br/sustenagro#', '')
-            }
-
-            data['valuetypes'].each{
-                data['options'][it.valuetype] = Uri.simpleDomain(k[':'+it.valuetype].options, 'http://bio.icmc.usp.br/sustenagro#', '')
-            }
-
-            if(data['indicator']['valuetype'] == 'Real'){}
-            else {}
-        }
-
-        render( template: '/widgets/indicatorForm',
-                model:    [indicator: data['indicator'],
-                           valuetypes: data['valuetypes'],
-                           dimensions: data['dimensions'],
-                           attributes: data['attributes'],
-                           options: data['options'],
-                           ind_tags: ['id', 'label@en', 'label@pt', 'weight', 'dimension', 'attribute', 'valuetype']
-                ]);
-    }
+//    def updateIndicator(){
+//        def id = params.id_base
+//
+//        if(params.id_base != params.id){
+//            def labels = [:]
+//            params.each{ key, value ->
+//                if(key.startsWith('label@'))
+//                    labels[key.substring(key.indexOf('@')+1)] = value
+//            }
+//            String sparql = "<${k.toURI(":" + params.id)}>" +
+//                    " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
+//                    " rdfs:subClassOf <${k.toURI(":" + params.attribute)}>; "+
+//                    " rdf:type owl:Class; "+
+//                    " rdf:type owl:NamedIndividual; "+
+//                    " <http://bio.icmc.usp.br/sustenagro#weight> \"${params.weight}\"^^xsd:double; "
+//            labels.each{ key, value ->
+//                sparql += " rdfs:label \"$value\"@"+key+"; "
+//            }
+//            sparql += " rdfs:subClassOf _:b. "+
+//                    " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
+//            //println sparql
+//            k.insert(sparql)
+//            //k.delete()
+//        }
+//        else {
+//            def indicator = k[id].getIndicator()
+//            Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
+//
+//            def lang
+//            indicator[0].each{ key, value ->
+//                if(indicator[0][key] != params[key]){
+//                    if(key.startsWith('label')){
+//                        lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
+//                        k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
+//                                 "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \"${params[key]}\"@$lang}\n" +
+//                                 "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \n" +
+//                                 "FILTER (lang(?label) = '$lang')}")
+//                    }
+//                }
+//            }
+//        }
+//        def respond = ['result': 'ok']
+//
+//        render respond as JSON
+//    }
+//
+//    def indicatorsReset(){}
+//
+//    def attributes(){
+//        def attr = k[':'+params['dimension']].attributes
+//        //println attr
+//
+//        Uri.simpleDomain(attr, 'http://bio.icmc.usp.br/sustenagro#')
+//
+//        render attr as XML
+//    }
+//
+//    def indicatorForm(){
+//        def id = params['id']
+//        def data = [:]
+//        def result = Uri.simpleDomain(k[':'+id].indicator, "http://bio.icmc.usp.br/sustenagro#", '')
+//
+//        //println result
+//
+//        if(result.size() == 1){
+//            data['indicator'] = result[0]
+//            data['indicator']['id'] = id
+//            data['valuetypes'] = Uri.simpleDomain(k[':Value'].dataValues, 'http://bio.icmc.usp.br/sustenagro#', '')
+//            data['dimensions'] = Uri.simpleDomain(k[':Indicator'].dimensions, 'http://bio.icmc.usp.br/sustenagro#', '')
+//            data['attributes'] = [:]
+//            data['options'] = [:]
+//
+//            data['dimensions'].each{
+//                data['attributes'][it.id] = Uri.simpleDomain(k[':'+it.id].attributes, 'http://bio.icmc.usp.br/sustenagro#', '')
+//            }
+//
+//            data['valuetypes'].each{
+//                data['options'][it.valuetype] = Uri.simpleDomain(k[':'+it.valuetype].options, 'http://bio.icmc.usp.br/sustenagro#', '')
+//            }
+//
+//            if(data['indicator']['valuetype'] == 'Real'){}
+//            else {}
+//        }
+//
+//        render( template: '/widgets/indicatorForm',
+//                model:    [indicator: data['indicator'],
+//                           valuetypes: data['valuetypes'],
+//                           dimensions: data['dimensions'],
+//                           attributes: data['attributes'],
+//                           options: data['options'],
+//                           ind_tags: ['id', 'label@en', 'label@pt', 'weight', 'dimension', 'attribute', 'valuetype']
+//                ]);
+//    }
 
     def autoComplete(){
         def list = []
@@ -388,13 +393,13 @@ class AdminController {
         render list as JSON
     }
 
-    def contact(){
-        gui.setView(controllerName, actionName)
-        dsl.clean(controllerName, actionName)
-        gui.renderXML(actionName)
-
-        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
-    }
+//    def contact(){
+//        gui.setView(controllerName, actionName)
+//        dsl.clean(controllerName, actionName)
+//        gui.renderXML(actionName)
+//
+//        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+//    }
 
     def signup(){
         gui.setView(controllerName, actionName)
@@ -404,13 +409,13 @@ class AdminController {
         render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
     }
 
-    def evaluationObject(){
-        gui.setView(controllerName, actionName)
-        dsl.clean(controllerName, actionName)
-        gui.renderXML(actionName)
-
-        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
-    }
+//    def evaluationObject(){
+//        gui.setView(controllerName, actionName)
+//        dsl.clean(controllerName, actionName)
+//        gui.renderXML(actionName)
+//
+//        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+//    }
     /*
     def getIndicator(String id){
         k.select("distinct ?valuetype ?label ?dimension ?attribute")

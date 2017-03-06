@@ -19,6 +19,7 @@
 package dsl
 
 import org.springframework.context.ApplicationContext
+import semantics.Know
 
 /**
  * EvaluationObject
@@ -31,7 +32,7 @@ class EvaluationObject {
     def _ctx
     def model
     def widgets
-    def k
+    Know k
     def gui
 
     EvaluationObject(String id, ApplicationContext applicationContext){

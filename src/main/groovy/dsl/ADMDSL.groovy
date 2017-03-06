@@ -20,9 +20,11 @@ package dsl
 
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
+//import org.pcollections.PSet
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
-import utils.Uri
+import org.organicdesign.fp.collections.*
+import static org.organicdesign.fp.StaticImports.*
 
 /**
  * AQDMDSL
@@ -30,85 +32,70 @@ import utils.Uri
  * @author Dilvan Moreira.
  */
 
-class ADMDSL {
-    private _ctx
-    private _k
-    private _gui
-    private static _md
+class DSLanguage {
+    private final filename
+    private final _ctx
+    private final _k
 
-    private _sandbox
-    private _script
-    private _program
-    private _shell
+    private final _sandbox
+    // Interpreter in groovy
+    private final dslInter
 
-    private _data
-    private _msg
     private _props = [:]
-    private _featureMap = [:]
-    private _scenarioMap = [:]
-    private _reportView = []
-    private _evaluationObjectInstance
 
     /**
      *
      * @param filename
      * @param applicationContext
      */
-    ADMDSL(String filename, ApplicationContext applicationContext){
+    DSLanguage(final String filename, final ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
         _ctx = applicationContext
         _k = _ctx.getBean('k')
-        _gui = _ctx.getBean('gui')
-        _md = _ctx.getBean('md')
-        _msg = _ctx.getBean('messageSource')
+        // Traz os tipos que estão da DSL de tipos
+        //_gui = _ctx.getBean('gui')
+        // Library Markdown
+        //_md = _ctx.getBean('md')
+        // Internationalization
+        //_msg = _ctx.getBean('messageSource')
 
+        this.filename = filename
+
+        // Instanciar a DSL
         def _cc = new CompilerConfiguration()
+        // How the sandbox will behave
         _cc.addCompilationCustomizers(new SandboxTransformer())
+        // It will be delegated to a class
         _cc.setScriptBaseClass(DelegatingScript.class.name)
 
-        _shell = new GroovyShell(new Binding(), _cc)
+
+        dslInter = new GroovyShell(new Binding(), _cc)
+        // The sandbox used by the program
         _sandbox = new DSLSandbox()
-        _sandbox.register()
 
-        // Configure the GroovyShell and pass the compiler configuration.
-        //_shell = new GroovyShell(this.class.classLoader, binding, cc)
-        //println _ctx.getResource(filename).getFile().text
-
-        //_script = (DelegatingScript) _shell.parse(new File(filename).text)
-        //println _ctx.getBean('path')
-        //println new File(_ctx.getBean('path')+filename).toString()
-
-        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
-        _script.setDelegate(this)
-
-        // Run DSL script.
-        try {
-            _script.run()
-        }
-        finally {
-            _sandbox.unregister()
-        }
+        reload()
     }
 
-    def reload(String code){
-        _data = null
-        _props = [:]
-        _featureMap = [:]
-        _reportView = []
-        _evaluationObjectInstance = null
-
+    /**
+     * Reload the DSL if program change (without restarting
+     * application)
+     * @param code
+     * @return
+     */
+    def reload(){
+        _props= [:]
         _sandbox.register()
 
-        _script = (DelegatingScript) _shell.parse(code)
-        _shell
-        _script.delegate = this
+        def script = (DelegatingScript) dslInter.parse(_ctx.getResource(filename).file)
+        script.setDelegate(this)
+        //println "No property used yet."
 
         def response  = [:]
 
         // Run DSL script.
         try {
-            _script.run()
+            script.run()
             response.status = 'ok'
         }
         catch(Exception e){
@@ -128,133 +115,56 @@ class ADMDSL {
         return response
     }
 
-    def evaluationObject(String id, Closure closure){
-        String uri = _k.toURI(id)
-        def object = new EvaluationObject(uri, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = object
-        closure()
-
-        _evaluationObjectInstance = object
-    }
-
-    def evaluationObjectInfo(){
-        def analyseURI = _props[_data].id
-        def evalObjURI = _k[analyseURI].getAttr('appliedTo')
-        def data = []
-        _k[evalObjURI].dataProperties.each{
-            data.push([label: it.dataPropertyLabel.capitalize(), value: it.value])
-        }
-        _k[evalObjURI].objectProperties.each{
-            data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
-        }
-        _reportView.push(['widget': 'evaluationObjectInfo', 'attrs': [data: data]])
-    }
-
-    def getEvaluationObject(){
-        _evaluationObjectInstance
-    }
-
-    def feature(Map attrs, String id, Closure closure = {}){
-        String uri = _k.toURI(id)
-        def feature = new Feature(uri, attrs, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = feature
-        closure()
-
-        _featureMap[uri] = feature
-    }
-
-    def feature(String id, Closure closure = {}){
-        feature([:], id, closure)
-    }
-
-    def getFeatureMap(){
-        return _featureMap
-    }
-
-    def getScenarioMap(){
-        _scenarioMap
-    }
-
-    def report(Closure c){
-        _program = c
-    }
-
-    def runReport(){
-        _program()
-    }
-
-    def getVariables(){
-        def result = [:]
-        _props.each{ key, value ->
-            if(value.class != DataReader)
-                result[key] = value
-        }
-        return result
-    }
-
-    def getReportView(){
-        return _reportView
-    }
-
-    def data(String str){
-        _data = str
-        //_props[str]
-    }
-
-    def setData(obj){
-        _props[_data]= obj
-    }
-
-    def getData(String key){
-        _props[key]
-    }
-
-    def printData(){
-        println _props
-    }
-
     def propertyMissing(String key) {
-        //println "propertyMissing: key "+key
-        getData(key)
-        //new Node(_k, _k.toURI(props[key]))
+        println "Property missing: $key"
+
+        //throw new Exception("propertyMissing: $key")
     }
 
     def propertyMissing(String key, arg) {
-        //println "propertyMissing: key, arg "+key+"->"+arg
         _props[key] = arg
-    }
-
-//    def methodMissing(){
-//        println "methodMissing: key "
-//    }
-
-    def methodMissing(String key) {
-        println "methodMissing: key "+key
-        //new Node(_k, _k.toURI(props[key]))
+        //println "Property missing: $key -> $arg"
     }
 
     def methodMissing(String key, attrs){
-        //println "DSL methodMissing: "+ key
-        if(!attrs.isArray) return
+        throw new Exception("Method missing: $key -> $attrs")
     }
 
-    def clean(String controller, String action){
-        if(controller?.trim() && action?.trim()){
-            _gui.viewsMap[controller][action] = []
-            if(action == 'analysis' || action == 'report' ){
-               _reportView = []
-            }
-        }
-    }
-
+    /**
+     * Message in locale language.
+     *
+     * @param code
+     * @return
+     */
     def message(String code){
-        _msg.getMessage(code, null, Locale.getDefault())
+        _ctx.getBean('messageSource').getMessage(code, null, Locale.getDefault())
     }
 
-    static _toHTML(String txt) {_md.markdownToHtml(txt)}
+    //static _toHTML(String txt) {_md.markdownToHtml(txt)}
+}
+
+class ADMDSL extends DSLanguage {
+    def _filter = [:]
+
+    ADMDSL(final String filename, final ApplicationContext applicationContext){
+        super(filename, applicationContext)
+    }
+
+    def methodMissing(String key, attrs){
+        println("Method missing: $key -> $attrs")
+
+//        ImList t = vec(vec("Jane", "Smith", vec("a@b.c", "b@c.d")),
+//                tup("Fred", "Tase",  vec("c@d.e", "d@e.f", "e@f.g")))
+//        println t
+//        ImMap d = map(tup("Jane", vec("a@b.c", "b@c.d")),
+//                tup("Tase",  vec("c@d.e", "d@e.f", "e@f.g")))
+//        def e= d.assoc('ghhr', vec('kjlkjk kjkjk', 'uuuuiuueyyehhe'))
+//        println e
+//        println d
+    }
+
+    def filter(attrs){
+        _filter = attrs
+    }
 }
 

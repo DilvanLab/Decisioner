@@ -19,10 +19,13 @@
 package dsl
 
 import org.springframework.context.ApplicationContext
+import semantics.Know
 import utils.Uri
 
 /**
  * Feature
+ * Caracteristic of the EvaluationObjects
+ * in SustenAgro an indicator (with/without weight)
  *
  * @author Dilvan Moreira.
  * @author John Garavito.
@@ -31,7 +34,7 @@ class Feature {
     private def _uri
     private def _name
     private def _ctx
-    private def _k
+    private Know _k
     private def _model = [:]
     private def _conditional = []
     private def _attrs
