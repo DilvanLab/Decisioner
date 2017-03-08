@@ -39,7 +39,7 @@ class DataReader {
         def res
 
         if(!uri){
-            res = k[id].findURI(name)
+            res = k.findURI(name)
             if(res.size()>0)
                 uri = res[0].uri
             else

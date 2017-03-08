@@ -99,10 +99,10 @@ class AdminController {
         //    file = file + '.owl'
         onto.save(path + 'ontology/SustenAgro.rdf')//, 'manchester')
         //    println "Saved: $file"
-        def node = new Node(k)
+        //def node = new Node(k)
         //node.getIndividualsTriples()
 
-        node.deleteBaseOntology()
+        k.deleteBaseOntology()
 
         def endPoint = 'http://127.0.0.1:9999/blazegraph/namespace/kb/sparql'
 
@@ -380,9 +380,9 @@ class AdminController {
 
         if(params['word']){
             def cmds = commands.findAll{ params['word'] in it}
-            def identifiers = k[':Indicator'].selectSubject(params.word)
+            def identifiers = k.selectSubject(params.word)
             Uri.simpleDomain(identifiers,'http://bio.icmc.usp.br/sustenagro#','')
-            def labels = k[':Indicator'].findByLabel(params.word)
+            def labels = k.findByLabel(params.word)
             cmds.each{list.push(['name': it, 'value': it, 'score': 2000, 'meta': 'command'])}
             identifiers.each{list.push(['name': it.s, 'value': it.s, 'score': 2000, 'meta': 'identifier'])}
             labels.each{list.push(['name': it.label, 'value': it.label, 'score': 2000, 'meta': 'label'])}

@@ -29,7 +29,7 @@ class BootStrap {
     def init = { servletContext ->
         def adminRole = new Role('ROLE_ADMIN').save()
         def userRole = new Role('ROLE_USER').save()
-        def users = new Node(k).users
+        def users = k.users
         def roles
         def user
 

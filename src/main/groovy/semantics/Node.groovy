@@ -397,7 +397,7 @@ class Node {
     def getSubClass(String args=''){
         def argsList = args.tokenize(' ?')
         def query = ''
-        def result
+        //def result
 
         argsList.each{
             if(argsList.contains('label'))
@@ -415,11 +415,12 @@ class Node {
             //println arg;
         }
 
-        result = k.select('distinct ?subClass '+arg).query(query)
+        //result =
+        k.select('distinct ?subClass '+arg).query(query)
 
         //println query
 
-        def prefixes = k.prefixesMap
+        //def prefixes = k.prefixesMap
 
         /*result.metaClass.shortURI = {
             def uris = delegate.collect {
@@ -441,7 +442,7 @@ class Node {
         else
             return result*/
 
-        result
+        //result
     }
 
     /**
@@ -608,7 +609,7 @@ class Node {
      * @return
      */
     def getGrandChildrenIndividuals(String analysis, String args){
-        def argsList = args.split(' ')
+        //def argsList = args.split(' ')
         def result
         def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                 "?subClass rdfs:subClassOf <$URI>."+
@@ -658,7 +659,7 @@ class Node {
         result.metaClass.justification = { (delegate.size()==1)? delegate[0]['justification'] :delegate.collect { it['justification'] } }
 
         result.metaClass.equation = { eq ->
-            eq.resolveStrategy = Closure.DELEGATE_FIRST
+            eq.resolveStrategy = DELEGATE_FIRST
             delegate.collect({ eq.delegate = it; eq()})
         }
         return result
@@ -721,7 +722,7 @@ class Node {
         result.metaClass.weightTypeLabel = { (delegate.size()==1)? delegate[0]['weightTypeLabel'] :delegate.collect { it['weightTypeLabel'] } }
         result.metaClass.justification = { (delegate.size()==1)? delegate[0]['justification'] :delegate.collect { it['justification'] } }
         result.metaClass.equation = { eq ->
-            eq.resolveStrategy = Closure.DELEGATE_FIRST
+            eq.resolveStrategy = DELEGATE_FIRST
             delegate.collect({ eq.delegate = it; eq()})
         }
         return result
@@ -734,7 +735,7 @@ class Node {
      * @return
      */
     def getChildrenExtraIndividuals(String analysis, String args) {
-        def argsList = args.split(' ')
+        //def argsList = args.split(' ')
         def result
         def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                 "?ind ui:hasName ?name."+
@@ -865,64 +866,31 @@ class Node {
 //        (result.size()==1)? result[0] : result
 //    }
 
-    /**
-     * Used only in BootStrap.groovy
-     * @return
-     */
-    def getUsers(){
-        def select = ''
-        def query = ''
-        def result
 
-        query = "?user a ui:User. "+
-                "?user ui:hasUsername ?username. "+
-                "?user ui:hasPassword ?password. "
-
-        result = k.query(query)
-        //(result.size()==1)? result[0] : result
-    }
 
     /**
      * Used only in BootStrap.groovy
      * @return
      */
     def getRoles(){
-        def select = ''
-        def query = ''
-        def result
-
-        query = "<$URI> ui:hasRole ?role. "
-
-        result = k.query(query)
-        //(result.size()==1)? result[0] : result
+        k.query("<$URI> ui:hasRole ?role. ")
     }
 
     def getRestriction(String property){
-        def select = ''
-        def query = ''
-        def result
         def propertyURI = k.toURI(property);
 
-        query = "<$URI> rdfs:subClassOf ?o. "+
+        k.query( "<$URI> rdfs:subClassOf ?o. "+
                 "?o owl:onProperty ?property. "+
                 "optional {?o owl:onClass ?class. } "+
                 "optional {?o owl:cardinality ?cardinality. }"+
                 "optional {?o owl:qualifiedCardinality ?cardinality. }"+
-                "FILTER (?property = <$propertyURI>)"
-
-        result = k.query(query)
+                "FILTER (?property = <$propertyURI>)")
     }
 
     def getMicroregions(){
-        def select = ''
-        def query = ''
-        def result
-
-        query = "?id rdf:type <http://dbpedia.org/page/Microregion_(Brazil)>. "+
+        k.query( "?id rdf:type <http://dbpedia.org/page/Microregion_(Brazil)>. "+
                 "?id <http://dbpedia.org/ontology/state> <$URI>. " +
-                "?id rdfs:label ?label. "
-
-        result = k.query(query)
+                "?id rdfs:label ?label. ")
     }
 
 //    def findSubject(String args){
@@ -946,22 +914,6 @@ class Node {
 //        k.query("?s ?p <$URI>", '', '*')
 //    }
 
-    /**
-     * Used only in AdminController.groovy
-     * @return
-     */
-    def selectSubject(String word){
-        k.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), ':$word', 'i')")
-    }
-
-    def findByLabel(String word){
-        k.select('distinct ?label').query("?s rdfs:label ?label. FILTER regex(str(?label), '$word', 'i')")
-    }
-
-    def findURI(String label){
-        k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
-    }
-
 //    def existOntology(String uri){
 //        def existOnt = false
 //        def result = k.query("?o rdf:type owl:Ontology")
@@ -982,251 +934,6 @@ class Node {
 
     def getAnalysisLabel(String label){
         k.query("?id :appliedTo <$URI>. ?id rdfs:label ?label. filter contains(?label,'$label')")
-    }
-
-    def insertEvaluationObject(String id, Object type, Map properties = [:]){
-        def evalObjId = k.toURI("inds:"+id)
-        def name = k.toURI('ui:hasName')
-
-        String sparql = "<" + evalObjId + "> "
-
-        if(type.class.isArray()){
-            type.each{
-                sparql += "rdf:type <" + it + ">;"
-            }
-        }
-        else if(type in String){
-            sparql += "rdf:type <" + type + ">;"
-        }
-
-        sparql += "rdfs:label '" + properties[name].value + "'@pt;"+
-                  "rdfs:label '" + properties[name].value + "'@en. "
-
-        sparql += createTriples(evalObjId, properties)
-
-        /*sparql.split(';').each{
-            println it
-        }*/
-
-        k.insert(sparql)
-    }
-
-    def insertAnalysis(String id, Map properties = [:]){
-        def analysisId = k.toURI("inds:"+id)
-        String sparql = "<$analysisId> rdf:type ui:Analysis. "
-
-        //println properties
-
-        sparql += createTriples(analysisId, properties)
-
-        k.insert(sparql)
-    }
-
-    def insertFeatures(String id, Map individuals = [:]){
-        def analysisId = k.toURI('inds:'+id)
-        String sparql = ''
-        String featureId = ''
-        String indsBase = k.toURI('inds:')
-        String domainBase = k.toURI(':')
-
-        individuals.each{
-            featureId = (it.key+'-'+id).replace(domainBase, indsBase)
-            sparql += "<$featureId> rdf:type <$it.key>. "
-
-            if(it.value.justification)
-                sparql += "<$featureId> :hasJustification '$it.value.justification'. "
-
-            if(k.isURI(it.value.value)){
-                sparql += "<$featureId> ui:value <$it.value.value>. "
-            }
-            else{
-                sparql += "<$featureId> ui:value _:$it.value.value.id. "
-                sparql += "_:$it.value.value.id ui:dataValue '$it.value.value.dataValue'^^xsd:double. "
-                sparql += "_:$it.value.value.id rdfs:label '$it.value.value.label'. "
-            }
-
-            if(it.value.weight){
-                if(k.isURI(it.value.weight))
-                    sparql += "<$featureId> ui:hasWeight <$it.value.weight>. "
-                else {
-                    sparql += "<$featureId> ui:hasWeight _:$it.value.weight.id. "
-                    sparql += "_:$it.value.weight.id ui:dataValue '$it.value.weight.dataValue'^^xsd:double. "
-                    sparql += "_:$it.value.weight.id rdfs:label '$it.value.weight.label'. "
-                }
-            }
-            sparql += "<$featureId> dc:isPartOf <$analysisId>. "
-            sparql += "<$analysisId> dc:hasPart <$featureId>. "
-        }
-        //println sparql
-        k.insert(sparql)
-    }
-
-    def insertExtraFeatures(String id, Map individuals = [:]){
-        def analysisId = k.toURI('inds:'+id)
-        String sparql = ''
-        String featureId = ''
-        String indsBase = k.toURI('inds:')
-        String domainBase = k.toURI(':')
-
-        individuals.each{ individual ->
-            individual.value.each{ list ->
-                list.each{ item ->
-                    featureId = (individual.key+'-'+item.key+'-'+id).replace(domainBase, indsBase)
-                    sparql += "<$featureId> rdf:type <$individual.key>. "
-                    sparql += "<$featureId> dc:isPartOf <$analysisId>. "
-                    sparql += "<$analysisId> dc:hasPart <$featureId>. "
-                    sparql += createTriples(featureId, item.value)
-                }
-            }
-        }
-        //println sparql
-        k.insert(sparql)
-    }
-
-    def insertUser(String id, Map properties = [:]){
-        def userId = k.toURI('inds:'+id)
-        String sparql = "<$userId> rdf:type ui:User. "
-
-        sparql += createTriples(userId, properties)
-
-        //println sparql
-
-        k.insert(sparql)
-    }
-
-    def insertTriples(String id, Map properties = [:]){
-        k.insert(createTriples(id, properties))
-    }
-
-    def createTriples(String id, Map properties = [:]){
-        String sparql = '<' + k.toURI(id) + '> '
-
-        properties.each { key, property ->
-
-//            String xsd = null
-//            switch (property.dataType) {
-//                case k.toURI('xsd:string'): xsd = "^^xsd:string; "; break
-//                case k.toURI('xsd:double'): xsd = "^^xsd:double; "; break
-//                case k.toURI('xsd:float'): xsd = "^^xsd:float; "; break
-//                case k.toURI('owl:real'): xsd = "^^owl:real; "; break
-//                case k.toURI('xsd:date'): xsd = "^^xsd:date; "; break
-//                case k.toURI('xsd:time'): xsd = "^^xsd:time; "; break
-//                case k.toURI('xsd:dateTime'): xsd = "^^xsd:dateTime; "; break
-//                case k.toURI('xsd:duration'): xsd = '^^xsd:duration; '; break
-//                case k.toURI('rdfs:Literal'): xsd = "^^rdfs:Literal; "; break
-//            }
-//            if (property.value in String[] || property.value in Object[]) {
-//                if (xsd)
-//                    property.value.each { sparql += "<${k.toURI(key)}> \"$it\"$xsd" }
-//                else
-//                    property.value.each {
-//                        if (k.isURI(it))
-//                            sparql += "<${k.toURI(key)}> <$it>; "
-//                    }
-//            } else {
-//                if (xsd)
-//                    sparql += "<${k.toURI(key)}> \"$property.value\"$xsd"
-//                else {
-//                    if (property.value in String && k.isURI(property.value))
-//                        sparql += "<${k.toURI(key)}> <$property.value>; "
-//                    else
-//                    //println "Default: " + key + " : " + property.value
-//                        sparql += "<${k.toURI(key)}> '$property.value'@$k.lang; "
-//                }
-//            }
-//            //============
-//            if (xsd) {
-//                if (property.value in String[] || property.value in Object[])
-//                    property.value.each { sparql += "<${k.toURI(key)}> \"$it\"$xsd" }
-//                else sparql += "<${k.toURI(key)}> \"$property.value\"$xsd"
-//            } else {
-//                if (property.value in String[] || property.value in Object[])
-//                    property.value.each {
-//                        if (k.isURI(it))
-//                            sparql += "<${k.toURI(key)}> <$it>; "
-//                    }
-//                else if (property.value in String && k.isURI(property.value))
-//                    sparql += "<${k.toURI(key)}> <$property.value>; "
-//                else
-//                     //println "Default: " + key + " : " + property.value
-//                    sparql += "<${k.toURI(key)}> '$property.value'@$k.lang; "
-//            }
-
-
-            switch (property.dataType) {
-                case k.toURI('xsd:string'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"$it\"^^xsd:string; " }
-                    else sparql += "<${k.toURI(key)}> \"$property.value\"^^xsd:string; "
-                    break
-                case k.toURI('xsd:double'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:double; " }
-                    else sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:double; "
-                    break
-                case k.toURI('xsd:float'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:float; " }
-                    else sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:float; "
-                    break
-                case k.toURI('owl:real'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^owl:real; " }
-                    else sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^owl:real; "
-                    break
-                case k.toURI('xsd:date'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:date; " }
-                    else sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date; "
-                    break
-                case k.toURI('xsd:time'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:time; " }
-                    else sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:time; "
-                    break
-                case k.toURI('xsd:dateTime'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:dateTime; " }
-                    else sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:dateTime; "
-                    break
-                case k.toURI('xsd:duration'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:duration; " }
-                    else sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:duration; "
-                    break
-                case k.toURI('rdfs:Literal'):
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ sparql += "<${k.toURI(key)}> '" + it + "'@" + k.lang + "; " }
-                    else sparql += "<${k.toURI(key)}> '" + property.value + "'@" + k.lang + "; "
-                    break
-                default:
-                    if(property.value in String[] || property.value in Object[])
-                        property.value.each{ if(k.isURI(it)) {  sparql += "<${k.toURI(key)}> <" + it + ">; " } }
-                    else if(property.value in String && k.isURI(property.value))
-                        sparql += "<${k.toURI(key)}> <" + property.value + ">; "
-                    else {
-                        println "Default: " + key + " : " + property.value
-                        sparql += "<${k.toURI(key)}> '" + property.value + "'@" + k.lang + "; "
-                    }
-            }
-        }
-        if(sparql.length()>2 && sparql.contains('; '))
-            sparql = sparql[0..-3]+"."
-        return sparql
-    }
-
-    def deleteFeatures(String id){
-        def uri = k.toURI('inds:'+id)
-        k.delete("<$uri> dc:hasPart ?id. ?id ?p1 ?o. ?s ?p2 ?id")
-    }
-
-    def deleteAnalysis(String id){
-        def uri = k.toURI('inds:'+id)
-        k.delete("?s ?p1 <$uri>. <$uri> ?p2 ?o.")
-    }
-
-    def deleteBaseOntology(){
-        k.delete("?s ?p ?o. filter(!STRSTARTS(STR(?s), 'http://semantic.icmc.usp.br/individuals#') || isBlank(?s) )", "{?s ?p ?o }")
     }
 
     private propertyToList = {ArrayList source, String property ->

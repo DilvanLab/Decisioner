@@ -63,7 +63,7 @@ class UserController {
             def uri = k.toURI('inds:'+username)
 
             if(!k[uri].exist()){
-                node.insertUser(username, properties)
+                k.insertUser(username, properties)
 
                 user = new User(username, properties[passwordURI].value, true).save()
                 UserRole.create user, userRole

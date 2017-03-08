@@ -110,7 +110,7 @@ class ToolController {
 
         if(params[name] && params[type]){
 
-            def node = new Node(k)
+            //def node = new Node(k)
             def propertyInstances = [:]
             def now = new Date()
             def value
@@ -129,12 +129,12 @@ class ToolController {
             //println id
             //println propertyInstances
 
-            node.insertEvaluationObject(id, params[type], propertyInstances)
+            k.insertEvaluationObject(id, params[type], propertyInstances)
 
             propertyInstances = [:]
             propertyInstances[k.toURI(':hasEvaluationObject')] = [value: k.toURI('inds:'+id), dataType: k.toURI('ui:EvaluationObject')]
 
-            node.insertTriples(user, propertyInstances)
+            k.insertTriples(user, propertyInstances)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
@@ -234,7 +234,7 @@ class ToolController {
 
         def evalObjURI = k.toURI(parameters.evalObjInstance)
         def analysisId = parameters.analysisId
-        def node = new Node(k)
+        //def node = new Node(k)
         def properties = [:]
         def exist = k['inds:'+analysisId].exist()
         def name = k[':Harvest'].label+ ' ' + k[evalObjURI].getAttr('?harvestYear')
@@ -245,8 +245,8 @@ class ToolController {
             name = k['inds:'+analysisId].getAttr('label')
             properties[k.toURI('ui:updateAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()), dataType: k.toURI('xsd:dateTime')]
 
-            node.deleteFeatures(analysisId)
-            node.deleteAnalysis(analysisId)
+            k.deleteFeatures(analysisId)
+            k.deleteAnalysis(analysisId)
         }
         else if(!exist && analysisSize > 0)
             name += " ($analysisSize)"
@@ -255,9 +255,9 @@ class ToolController {
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
         properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(timestamp), dataType: k.toURI('xsd:dateTime')]
 
-        node.insertAnalysis(analysisId, properties)
-        node.insertFeatures(analysisId, featuresInstances(parameters))
-        node.insertExtraFeatures(analysisId, extraFeaturesInstances(parameters))
+        k.insertAnalysis(analysisId, properties)
+        k.insertFeatures(analysisId, featuresInstances(parameters))
+        k.insertExtraFeatures(analysisId, extraFeaturesInstances(parameters))
     }
 
     def updateAnalysis(){
@@ -267,7 +267,7 @@ class ToolController {
         def evalObjURI = k[analysisURI].getAttr('appliedTo')
         def createAt = k[analysisURI].getAttr('createAt')
         def name = k[analysisURI].getAttr('label')
-        def node = new Node(k)
+        //def node = new Node(k)
         def properties = [:]
 
         properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
@@ -275,12 +275,12 @@ class ToolController {
         properties[k.toURI('ui:createAt')] = [value: createAt, dataType: k.toURI('xsd:dateTime')]
         properties[k.toURI('ui:updateAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
-        node.deleteFeatures(analysisId)
-        node.deleteAnalysis(analysisId)
+        k.deleteFeatures(analysisId)
+        k.deleteAnalysis(analysisId)
 
-        node.insertAnalysis(analysisId, properties)
-        node.insertFeatures(analysisId, featuresInstances(params))
-        node.insertExtraFeatures(analysisId, extraFeaturesInstances(params))
+        k.insertAnalysis(analysisId, properties)
+        k.insertFeatures(analysisId, featuresInstances(params))
+        k.insertExtraFeatures(analysisId, extraFeaturesInstances(params))
 
         redirect(action: 'analysis', id: analysisId)
     }
