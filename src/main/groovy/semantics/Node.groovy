@@ -62,6 +62,10 @@ class Node {
         this.patterns['creator']    = " dc:creator ?creator. "
     }
 
+    def getAt(String name){
+        getAttr(name)
+    }
+
     /**
      * Get atributes from node using the patterns or a URI.
      *
@@ -411,7 +415,7 @@ class Node {
         def arg = ''
 
         if(argsList.size()>0){
-            arg = "?" + ['label', 'subClass'].join(" ?");
+            arg = "?" + ['label', 'subClass'].join(" ?")
             //println arg;
         }
 
@@ -459,7 +463,7 @@ class Node {
             query += "?subClass rdfs:subClassOf <$URI>"
 
             if (argsList.contains('subClassLabel'))
-                query += "; rdfs:label ?subClassLabel";
+                query += "; rdfs:label ?subClassLabel"
 
             query += "."
 
@@ -644,7 +648,7 @@ class Node {
 
         result.each{
             if(it['relevance'])
-                it['totalValue'] = it.value * it.relevance;
+                it['totalValue'] = it.value * it.relevance
         }
 
         result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
@@ -709,7 +713,7 @@ class Node {
 
         result.each{
             if(it['weight'])
-                it['totalValue'] = it.value * it.weight;
+                it['totalValue'] = it.value * it.weight
         }
 
         result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
@@ -877,7 +881,7 @@ class Node {
     }
 
     def getRestriction(String property){
-        def propertyURI = k.toURI(property);
+        def propertyURI = k.toURI(property)
 
         k.query( "<$URI> rdfs:subClassOf ?o. "+
                 "?o owl:onProperty ?property. "+
@@ -929,7 +933,7 @@ class Node {
 //    }
 
     def exist(){
-        k.query("<$URI> rdf:type ?type").size() > 0 ? true : false
+        k.query("<$URI> rdf:type ?type").size() > 0
     }
 
     def getAnalysisLabel(String label){

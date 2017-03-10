@@ -37,10 +37,10 @@ class Know {
     Know(String url){
         sparql = new SparqlBase(endpoint: url)
         addDefaultNamespaces()
-        setLang('pt')
+        lang = 'pt'
     }
 
-    def addDefaultNamespaces(){
+    private addDefaultNamespaces(){
         addNamespace('rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         addNamespace('rdfs','http://www.w3.org/2000/01/rdf-schema#')
         addNamespace('owl','http://www.w3.org/2002/07/owl#')
@@ -69,7 +69,7 @@ class Know {
         findNode(name)
     }
 
-    Node findNode(String name){
+    private Node findNode(String name){
         new Node(this, toURI(name))
     }
 
@@ -84,7 +84,7 @@ class Know {
         sparql.query(f, lang)
     }
 
-    def insert(String q, String lang = this.lang){
+    def insert(String q) { //}, String lang = this.lang){
         def f = "$prefixes \nINSERT DATA {$q}"
         sparql.update(f)
     }
@@ -103,7 +103,7 @@ class Know {
 //        delete('?s ?p ?o')
 //    }
 
-    def toURI(String id){
+    String toURI(String id){
         if (id==null || id == '') return null
         if (id == ':') return _prefixes['']
         if (!id.contains(' ')){
@@ -160,44 +160,38 @@ class Know {
 //            return null
 //    }
 
-    def searchByLabel(name){
+    def searchByLabel(String name){
         println "Heavy costly!"
         def langs = ['en', 'pt', 'es', 'fr', 'de']
-        def search
-        def result = ''
 
-        langs.find{
-            search = query("?uri rdfs:label '" + name + "'@"+it)
-            if (search.size() > 0) {
-                result = search[0].uri
-                return true
-            }
+        langs.findResult('') {
+            def search = query("?uri rdfs:label '" + name + "'@"+it)
+            if (search.size() > 0) search[0].uri
+            else null
         }
-        return result
     }
 
-    def searchPrefix(String name){
+    Map searchPrefix(String name){
         //def search
-        def result = null
-        _prefixes.find{key, value ->
-            if(name.startsWith(key+':') || name.startsWith(value)) {
-                result = [alias : key, 'uri': value]
-                return true
-            }
+        //def result = null
+        _prefixes.findResult {key, value ->
+            if(name.startsWith(key+':') || name.startsWith(value))
+                [alias : key, 'uri': value]
+            else null
         }
-        if(!result) {
-            /*
-            _prefixes.find{ key, value ->
-                println "<" + value + name + "> a ?class"
-                search = query("<" + value + name + "> rdf:type ?class")
-                if (search.size() > 0) {
-                    result = [alias: key, 'uri': value]
-                }
-                return true
-            }
-        */
-        }
-        return result
+//        if(!result) {
+//            /*
+//            _prefixes.find{ key, value ->
+//                println "<" + value + name + "> a ?class"
+//                search = query("<" + value + name + "> rdf:type ?class")
+//                if (search.size() > 0) {
+//                    result = [alias: key, 'uri': value]
+//                }
+//                return true
+//            }
+//        */
+//        }
+//        return result
     }
 
     def getPrefixes(){
@@ -218,11 +212,11 @@ class Know {
         lang = lg
     }
 
-    def getLang(){
-        return lang
-    }
+//    def getLang(){
+//        return lang
+//    }
 
-    def isURI(Object id){
+    static isURI(Object id){
         if(id in String)
             return (id != null && id != '' && !id.contains(" ") && id.startsWith('http://'))
             //    return true
@@ -296,7 +290,7 @@ class Know {
        Triples related.
      */
 
-    private def createTriples(String id, Map properties = [:]){
+    private createTriples(String id, Map properties = [:]){
         String sparql = '<' + toURI(id) + '> '
 
         properties.each { key, property ->
