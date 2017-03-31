@@ -96,6 +96,11 @@ class Feature {
         return _name
     }
 
+    /**
+     * Returns
+     * @param evalObjId
+     * @return
+     */
     def getModel(String evalObjId = null){
         if(evalObjId && _conditional.size() > 0){
             def uri = _k.toURI('inds:'+evalObjId)

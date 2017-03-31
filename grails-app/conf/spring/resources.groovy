@@ -33,12 +33,12 @@ beans = {
     //TODO PegDown not thread safe: Take it out of this global variable!
     md(PegDownProcessor)
 
-    //k(Know, 'http://143.107.232.73:9999/blazegraph/namespace/kb/sparql')
+    k(Know, 'http://143.107.232.73:9999/blazegraph/namespace/kb/sparql')
     //k(Know, 'http://192.168.0.103:9999/blazegraph/namespace/kb/sparql')
     //k(Know, 'http://192.168.0.14:9999/blazegraph/namespace/kb/sparql')
     //k(Know, 'http://192.168.4.28:9999/blazegraph/namespace/kb/sparql')
     //k(Know, 'http://192.168.154.17:9999/blazegraph/namespace/kb/sparql')
-    k(Know, 'http://172.26.245.126:9999/blazegraph/namespace/kb/sparql')
+    //k(Know, 'http://172.26.245.126:9999/blazegraph/namespace/kb/sparql')
     //k(Know, 'http://127.0.0.1:9999/blazegraph/namespace/kb/sparql')
 
     gui(GUIDSL, 'dsl/gui.groovy', grailsApplication.mainContext)

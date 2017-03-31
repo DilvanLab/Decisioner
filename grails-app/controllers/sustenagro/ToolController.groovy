@@ -18,6 +18,7 @@
 
 package sustenagro
 
+import dsl.Feature
 import org.springframework.web.servlet.support.RequestContextUtils
 import semantics.DataReader
 import semantics.Know
@@ -359,8 +360,6 @@ class ToolController {
         def _gui = new GUIDSL('dsl/gui.groovy', grailsApplication.mainContext)
 
         if(userId && evalObjId && analysisId) {
-            def sustainabilityTabs = []
-            def efficiencyTabs = []
             def id
             def res
             def extra
@@ -381,12 +380,12 @@ class ToolController {
                     userId = params.user
             }
 
-            def options = k[':SustainabilityCategory'].individualsIdValueLabel
-            def widgets
-
             //println options
-
-            dsl.featureMap.eachWithIndex { key, feature, int i ->
+            def efficiencyTabs = []
+            def sustainabilityTabs = []
+            // Get all features that are going to be displayed
+            // from the feature command (on the DSL)
+            dsl.featureMap.eachWithIndex { key, Feature feature, int i ->
                 //res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
                 res = k[key].getGrandChildrenIndividuals(uri, '?id ?ind ?justification ?valueType ?weightType')
                 extra = k[key].getChildrenExtraIndividuals(uri, '?ind ?name ?justification ?valueTypeLabel ?value ?relevance')
@@ -419,9 +418,10 @@ class ToolController {
                         extraValues[id].value = it.value
                 }
 
-                widgets = []
+                def widgets = []
                 widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: values]])
                 if (feature.attrs.extraFeatures) {
+                    def options = k[':SustainabilityCategory'].individualsIdValueLabel
                     widgets.push(['widget': 'extraFeatures',
                                    attrs: [id: key, name: feature.name, options: options, values: extraValues, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
                 }
