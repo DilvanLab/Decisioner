@@ -1,1 +1,0 @@
-{"version":3,"file":"\/Users\/dilvan\/Dropbox\/IdeaProjects\/sustenagro\/grails-app\/assets\/javascripts\/dataset-viewer\/js\/devtools\/version.js","sources":["version.cljs?rel=1487092377644"],"lineCount":9,"mappings":";AAAA;;AAGA,AAAKA,mCAAgB;AAErB,uCAAA,vCAAMC;AAAN,AACED","names":["devtools.version\/current-version","devtools.version\/get-current-version"]}

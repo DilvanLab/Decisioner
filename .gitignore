@@ -1,37 +1,11 @@
-# Ignore temporary Emacs files
-*~
-.class*
-
-/bin
-
-#Ignore Eclipse directories
-.settings
-.project
-.classpath
-
-#Ignore Intellij files
-*.iml
-.idea
-
-#Ignore VS Code files
-.vscode
-
-# Exclude build directory
-target
-build
-out
+Thumbs.db
+.DS_Store
 .gradle
-gradle
-
-# Ignore Blazegraph
-bigdata.jnl
-blazegraph.jar
-
-*.DS_Store
-
-*.log
-*.log.lck
-
-catalog-v001.xml
-
-.asscache
+build/
+.idea
+*.iml
+*.ipr
+*.iws
+.project
+.settings
+.classpath

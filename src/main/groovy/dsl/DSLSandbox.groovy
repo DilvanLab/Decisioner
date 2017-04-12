@@ -19,7 +19,7 @@
 package dsl
 
 import org.kohsuke.groovy.sandbox.GroovyValueFilter
-import semantics.DataReader
+//import semantics.DataReader
 
 /**
  * DSLSandbox
@@ -50,8 +50,9 @@ class DSLSandbox extends GroovyValueFilter{
             ArrayList,
             Object[],
             LinkedHashMap,
-            DataReader,
+            /*DataReader,
             EvaluationObject,
-            Feature
+            Feature,
+            Tab*/
     ] as Set
 }
