@@ -1,0 +1,39 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-meta/iron-meta.html">
+<script src="../js/semaphore.js" type="text/javascript"></script>
+
+<dom-module id="swc-sustainability-semaphore">
+    <template>
+        <style>
+            #semaphore, #semaphoreResult{
+                width: 800px;
+                margin: 0 auto;
+            }
+        </style>
+        <div>
+            <h4>Sustainability Semaphore</h4>
+            <div id="semaphoreResult">
+
+            </div>
+            <div id="semaphore">
+
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-sustainability-semaphore',
+            properties: {
+                id: String,
+                value: Number,
+                label: Object,
+                legend: Array,
+                range: Array
+            },
+            ready: function(){
+                var result = Semaphore("#semaphore", {value: this.value, label: this.label['pt'], legend: this.legend, range: this.range})
+                Polymer.dom(this.$.semaphoreResult).innerHTML = "<p>"+this.label['pt']+": <b>"+result.value+"</b></p>";
+            }
+        });
+    </script>
+</dom-module>

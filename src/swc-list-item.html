@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+
+<dom-module id="swc-list-item">
+    <template>
+        <style>
+
+        </style>
+        <div>
+            <paper-radio-button name="{{name}}">{{label}}</paper-radio-button>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-list-item',
+            properties: {
+                label: String,
+                name: String
+            },
+            ready: function(){
+
+            }
+        });
+    </script>
+</dom-module>

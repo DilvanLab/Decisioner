@@ -1,0 +1,56 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+
+<dom-module id="swc-tabs-pages">
+    <template>
+        <style>
+            paper-tabs {
+                font-size: 16px;
+                background-color: white;
+                --paper-tabs-selection-bar-color: #aaa;
+                box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+            }
+        </style>
+        <paper-tabs selected="{{selectedTab}}" noink>
+            <template is="dom-repeat" items="{{tabItems}}">
+                <paper-tab>{{item.name}}</paper-tab>
+            </template>
+        </paper-tabs>
+        <iron-pages selected="{{selectedTab}}">
+            <content></content>
+        </iron-pages>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-tabs-pages',
+
+            properties: {
+                tabItems: {
+                    type: Array,
+                    notify: true
+                },
+
+                selectedTab: {
+                    type: Number,
+                    notify: true,
+                    value: 0
+                }
+            },
+
+            getContainer: function(idx){
+                //return this.async(function(){
+                    return this.$$('iron-pages').children[idx];
+                    //return this.$$('iron-pages').children
+               // })
+            },
+            getContainers: function(){
+                //return this.async(function(){
+                return this.$$('iron-pages');
+                //return this.$$('iron-pages').children
+                // })
+            }
+        });
+    </script>
+</dom-module>

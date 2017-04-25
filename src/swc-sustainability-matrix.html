@@ -1,0 +1,46 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-meta/iron-meta.html">
+<script src="../js/matrix.js" type="text/javascript"></script>
+
+<dom-module id="swc-sustainability-matrix">
+    <template>
+        <style>
+            #matrix, #matrixResult{
+                width: 800px;
+                margin: 0 auto;
+            }
+        </style>
+        <div>
+            <h4>Matrix de sustentabilidade</h4>
+            <div id="matrixResult">
+
+            </div>
+            <div id="matrix">
+
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-sustainability-matrix',
+            properties: {
+                id: String,
+                x: Number,
+                y: Number,
+                label_x: Object,
+                label_y: Object,
+                range_x: Array,
+                range_y: Array,
+                recomendations: Array
+            },
+
+            ready: function(){
+                var result = Matrix("#matrix", {x: this.x, y: this.y, label_x: this.label_x['pt'], label_y: this.label_y['pt'], range_x: this.range_x, range_y: this.range_y, quadrants: this.quadrants, recomendations: this.recomendations })
+                Polymer.dom(this.$.matrixResult).innerHTML ="<p>Sustainability index: <b>"+this.x+"</b></p>"+
+                                                            "<p>EfficiencyIndex: <b>"+this.y+"</b></p>"+
+                                                            "<p>Matrix quadrant: <b>"+result.quadrant+"</b></p>"+
+                                                            "<p>Matrix recommendation: <b>"+result.recomendation+"</b></p>";
+            }
+        });
+    </script>
+</dom-module>

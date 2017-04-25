@@ -1,0 +1,28 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-date-picker-item/paper-date-picker-item.html">
+
+<dom-module id="swc-date-picker">
+    <template>
+        <style>
+            paper-date-picker-item {
+                display: inline-block;
+            }
+            label{
+                font-weight: 500;
+            }
+        </style>
+        <div>
+            <label>{{label}}</label>
+            <paper-date-picker-item id="{{id}}"></paper-date-picker-item>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-date-picker',
+            properties: {
+                id: String,
+                label: String
+            }
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,13 @@
+{
+  "name": "SustenAgro",
+  "main": "index.html",
+  "authors": [
+    "John Garavito <john@ciclus.co>"
+  ],
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}

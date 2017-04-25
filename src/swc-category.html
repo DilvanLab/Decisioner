@@ -1,0 +1,36 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+
+<dom-module id="swc-category">
+    <template>
+        <style>
+            paper-radio-group {
+                display: block;
+            }
+
+            .category {
+                margin: 15px 0px;
+            }
+            
+            .category label{
+                font-weight: 500;
+            }
+        </style>
+        <div class="category">
+            <label id="{{id}}">{{label}}</label>
+            <paper-radio-group aria-labelledby="{{id}}" allow-empty-selection>
+                <content></content>
+            </paper-radio-group>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-category',
+            properties: {
+                id: String,
+                label: String,
+                multipleSelection: Boolean
+            }
+        });
+    </script>
+</dom-module>

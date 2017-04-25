@@ -1,0 +1,24 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/juicy-ace-editor/juicy-ace-editor.html">
+
+<dom-module id="swc-dsl-editor">
+    <template>
+        <div>
+            <juicy-ace-editor id="dslEditor" theme="ace/theme/chrome" mode="ace/mode/groovy" fontSize="14px"></juicy-ace-editor>
+        </div>
+        <style>
+            juicy-ace-editor {
+                margin: 15px 0px;
+                width: inherit;
+                min-height: 800px;
+                border: 1px solid #DDD;
+                border-radius: 4px;
+            }
+        </style>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-dsl-editor'
+        });
+    </script>
+</dom-module>

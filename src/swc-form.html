@@ -1,0 +1,70 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="swc-form">
+    <template>
+        <style>
+            .form{
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .form h4{
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            .horizontal-center {
+                @apply(--layout-horizontal);
+                @apply(--layout-center-justified);
+            }
+
+            .paper {
+                padding: 10px 12px;
+                background-color: white;
+                box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+            }
+
+            paper-button.indigo {
+                background-color: var(--paper-indigo-500);
+                color: white;
+                --paper-button-raised-keyboard-focus: {
+                    background-color: #03a9f4 !important;
+                    color: white !important;
+                };
+            }
+
+            paper-button.indigo:hover {
+                background-color: var(--paper-indigo-400);
+            }
+        </style>
+        <div class="form paper">
+            <h4>{{label}}</h4>
+            <form id="form" is="iron-form" method="post" action="{{action}}">
+                <content></content>
+                <div class="horizontal-center">
+                    <div>
+                        <paper-button raised class="indigo" onclick="submitForm()">Cadastrar</paper-button>
+                        <paper-button raised class="indigo">Limpar</paper-button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-form',
+            properties: {
+                id: String,
+                label: String,
+                action: String
+            }
+        });
+
+        function submitForm() {
+            document.getElementById('form').submit();
+        }
+    </script>
+</dom-module>

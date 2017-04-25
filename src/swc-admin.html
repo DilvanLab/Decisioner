@@ -1,0 +1,119 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-icons">
+<link rel="import" href="../bower_components/iron-icon">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="swc-dsl-editor.html">
+<link rel="import" href="swc-ontology-editor.html">
+<link rel="import" href="swc-tabs-pages.html">
+
+<dom-module id="swc-admin">
+    <template>
+        <style include="iron-flex iron-flex-alignment">
+            body{
+                font-size: 14px;
+            }
+
+            paper-toolbar {
+                color: #2196f3;
+                --paper-toolbar-background: #FFF;
+                --paper-toolbar-title: {
+                    font-weight: bold;
+                };
+            }
+
+            paper-toolbar span{
+                color: #000;
+            }
+
+            paper-button{
+                font-size: 12px;
+                color: #FFF;
+                background-color: #2196f3;
+            }
+
+            paper-tabs {
+                font-size: 16px;
+                --paper-tabs-selection-bar-color: #ddd;
+            }
+        </style>
+
+        <paper-toolbar>
+            <span class="title">Decisioner</span>
+
+            <paper-tabs selected="{{selected}}" noink>
+                <paper-tab>DSL Editor</paper-tab>
+                <paper-tab>Ontology Editor</paper-tab>
+            </paper-tabs>
+            <paper-button raised on-tap="saveDSL">
+                <iron-icon icon="save"></iron-icon>SAVE
+            </paper-button>
+            <paper-button raised on-tap="clearViewDiv">
+                <iron-icon icon="restore"></iron-icon>RESTORE
+            </paper-button>
+        </paper-toolbar>
+
+        <iron-pages selected="{{selected}}">
+            <div class="horizontal layout">
+                <div class="flex">
+                    <div class="horizontal end-justified layout">
+
+                    </div>
+                    <swc-dsl-editor></swc-dsl-editor>
+                </div>
+            </div>
+            <div class="horizontal layout">
+                <div class="flex">
+                    <div>
+                        <swc-ontology-editor></swc-ontology-editor>
+                    </div>
+                </div>
+            </div>
+        </iron-pages>
+  </template>
+
+  <script>
+    Polymer({
+        is: 'swc-admin',
+
+        properties: {
+            selected:{
+                type: Number,
+                value: 0
+            },
+            page: {
+                type: String
+            }
+        },
+
+        ready: function(){
+            RestClient({path: 'http://localhost:8080/DSL/main.json'}).then(function (response) {
+                var code = response.entity.dsl;
+                document.getElementById('dslEditor').value = code;
+            });
+        },
+
+        saveDSL: function(e) {
+            var data = {id: "main", code: document.getElementById('dslEditor').value};
+            RestClient({path: 'http://localhost:8080/DSL', entity: JSON.stringify(data)}).then(function (response) {
+                console.log('dsl saved')
+            });
+        },
+
+        clearViewDiv: function(e){
+            this.$.view.innerHTML = "";
+        },
+
+
+    });
+  </script>
+</dom-module>

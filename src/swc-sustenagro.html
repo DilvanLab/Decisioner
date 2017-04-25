@@ -1,0 +1,339 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/iron-component-page/iron-component-page.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-meta/iron-meta.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../bower_components/paper-date-picker-item/paper-date-picker-item.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animatable.html">
+<link rel="import" href="../bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/slide-right-animation.html">
+
+<link rel="import" href="swc-list.html">
+<link rel="import" href="swc-list-item.html">
+<link rel="import" href="swc-date-picker.html">
+<link rel="import" href="swc-sustainability-matrix.html">
+<link rel="import" href="swc-sustainability-semaphore.html">
+<link rel="import" href="swc-dsl-editor.html">
+<link rel="import" href="swc-ontology-editor.html">
+<link rel="import" href="swc-tabs-pages.html">
+<link rel="import" href="swc-category.html">
+<link rel="import" href="swc-admin.html">
+<link rel="import" href="swc-form.html">
+<link rel="import" href="swc-paper.html">
+
+<dom-module id="swc-sustenagro">
+    <template>
+        <style>
+            app-toolbar {
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+            }
+
+            app-toolbar a{
+                pointer-events: auto;
+            }
+
+            paper-item{
+                cursor: pointer;
+            }
+
+            @media (max-width: 600px) {
+                section {
+                    padding: 0;
+                }
+            }
+
+            #logo{
+                 margin: 0px 20px;
+                 width: 120px;
+                 height: 60px;
+            }
+        </style>
+
+        <app-location route="{{route}}"></app-location>
+
+        <app-route
+                route="{{route}}"
+                pattern="/:page"
+                data="{{data}}"
+                tail="{{tail}}">
+        </app-route>
+
+        <app-header-layout>
+            <app-header fixed>
+                <app-toolbar>
+                    <div main-title>
+                        <a href="/">
+                            <iron-image id="logo" sizing="contain" alt="SustenAgro" src="/images/logo.png"></iron-image>
+                        </a>
+                    </div>
+                    <paper-menu-button horizontal-align="right" horizontal-offset="10" vertical-offset="50">
+                        <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
+                        <paper-menu class="dropdown-content">
+                            <paper-item name="instance" on-tap="changeViewEvent"><iron-icon icon="add"></iron-icon> Production Unit</paper-item>
+                            <paper-item name="input" on-tap="changeViewEvent"><iron-icon icon="input"></iron-icon> Assessment</paper-item>
+                            <paper-item name="report" on-tap="changeViewEvent"><iron-icon icon="assessment"></iron-icon> Report</paper-item>
+                            <paper-item name="admin" on-tap="changeViewEvent"><iron-icon icon="build"></iron-icon> Admin</paper-item>
+                            <paper-item>Settings</paper-item>
+                            <paper-item>Help</paper-item>
+                        </paper-menu>
+                    </paper-menu-button>
+                </app-toolbar>
+            </app-header>
+
+            <iron-pages selected="{{data.page}}" attr-for-selected='id'>
+                <section id="main">
+                </section>
+                <section id="instance">
+                </section>
+                <section id="input">
+                </section>
+                <section id="report">
+                </section>
+                <section id="admin">
+                </section>
+            </iron-pages>
+        </app-header-layout>
+  </template>
+
+    <script>
+
+        Polymer({
+            is: 'swc-sustenagro',
+
+            ready: function(){
+                var route = this.get('route');
+                var name = (route.path != '/') ? route.path.substring(1) : 'main';
+                var renderDiv = document.getElementById(name);
+
+                if(renderDiv != null){
+                    if(typeof RestClient != 'undefined'){
+                        RestClient({path: 'http://localhost:8080/DataModel/dataTypes.json'}).then(function (response) {
+                            datatypes = response.entity;
+                            changeView(name);
+                        });
+                    }
+                }
+            },
+
+            changeViewEvent: function(event){
+                var element;
+                if(event.target.nodeName == "IRON-ICON" ){
+                    element = event.target.parentElement
+                }
+                else{
+                    element = event.target
+                }
+                var name = element.getAttribute('name');
+
+                changeView(name);
+            }
+        });
+
+        var html = '';
+        var datatypes = [];
+
+        function renderHTML(elements){
+            if(typeof elements != 'undefined' && elements.length > 0) {
+                var element;
+                for (var idx in elements) {
+                    element = elements[idx];
+
+                    if(typeof element.type != 'undefined' && datatypes[element.type]){
+                        element.widget = datatypes[element.type];
+                        html += createStartTagHTML(element);
+                    }
+
+                    renderHTML(element.children);
+
+                    if(typeof element.widget != 'undefined'){
+                        html += createEndTagHTML(element);
+                    }
+                }
+            }
+        }
+
+        function createStartTagHTML(element){
+            var tag = "", label = "";
+            switch(element.widget){
+                case 'swc-tabs-pages':
+                    var tabsItems = [];
+                    for(var idx in element.children){
+                        tabsItems.push({"name": element.children[idx].label, "id": element.children[idx].id});
+                    }
+                    return "<swc-tabs-pages tab-items='"+JSON.stringify(tabsItems)+"'>";
+                    break;
+                case 'div':
+                    return "<div id='"+element.id+"'>";
+                    break;
+                case 'fieldset':
+                    tag = "<fieldset id='"+element.id+"'>";
+                    tag += "<legend><h4>"+element.label+"</h4></legend>"
+                    return tag;
+                    break;
+                case 'swc-category':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<swc-category id='"+element.id+"' label='"+ label+"' ";
+                    if('multipleSelection' in element)
+                        tag += 'multipleSelection='+element.multipleSelection+' ';
+                    tag += ">";
+                    return tag;
+                    break;
+                case 'swc-list':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<swc-list id='"+element.id+"' label='"+ label+"' >";
+                    return tag;
+                    break;
+                case 'swc-form':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<swc-form action='"+ element.action+"' label='"+ label+"' >";
+                    return tag;
+                    break;
+                case 'swc-paper':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<swc-paper label='"+ label+"' >";
+                    return tag;
+                    break;
+                case 'paper-radio-button':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<paper-radio-button name='"+element.name+"' value='"+element.value+"'> "+ label;
+                    return tag;
+                    break;
+                case 'swc-list-item':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<swc-list-item name='"+element.name+"' label='"+ label+"' >";
+                    return tag;
+                    break;
+                case 'paper-input':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<paper-input name='"+element.name+"' label='"+label+"'>";
+                    return tag;
+                    break;
+                case 'swc-date-picker':
+                    label = (typeof element.label === 'object')?  element.label['pt'] : element.label;
+                    tag = "<swc-date-picker label='"+label+"'>";
+                    return tag;
+                    break;
+                case 'swc-sustainability-matrix':
+                    tag = "<swc-sustainability-matrix ";
+                    if(element.id)
+                        tag += 'id="'+element.id+'" ';
+
+                    if('x' in element)
+                        tag += 'x="'+element.x+'" ';
+
+                    if('y' in element)
+                        tag += 'y="'+element.y+'" ';
+
+                    if('label_x' in element)
+                        tag += "label_x='"+JSON.stringify(element.label_x)+"' ";
+
+                    if('label_y' in element)
+                        tag += "label_y='"+JSON.stringify(element.label_y)+"' ";
+
+                    if('range_x' in element)
+                        tag += "range_x='"+JSON.stringify(element.range_x)+"' ";
+
+                    if('range_y' in element)
+                        tag += "range_y='"+JSON.stringify(element.range_y)+"' ";
+
+                    if('quadrants' in element)
+                        tag += "quadrants='"+JSON.stringify(element.quadrants)+"' ";
+
+                    if('recomendations' in element)
+                        tag += "recomendations='"+JSON.stringify(element.recomendations)+"' ";
+
+                    tag += ">";
+
+                    return tag;
+                    break;
+                case 'swc-sustainability-semaphore':
+                    tag = "<swc-sustainability-semaphore ";
+                    if(element.id)
+                        tag += 'id="'+element.id+'" ';
+
+                    if(element.value)
+                        tag += 'value="'+element.value+'" ';
+
+                    if('label' in element)
+                        tag += "label='"+JSON.stringify(element.label)+"' ";
+
+                    if('legend' in element)
+                        tag += "legend='"+JSON.stringify(element.legend)+"' ";
+
+                    if('range' in element)
+                        tag += "range='"+JSON.stringify(element.range)+"' ";
+
+                    tag += ">";
+
+                    return tag;
+                    break;
+                default:
+                    tag = '<'+element.widget+' ';
+
+                    if('id' in element)
+                        tag += 'id="'+element.id+'" ';
+
+                    if('name' in element)
+                        tag += 'name="'+element.name+'" ';
+
+                    if('value' in element)
+                        tag += 'value="'+element.value+'" ';
+
+                    tag += '>';
+
+                    if('label' in element){
+                        tag += element.label;
+                    }
+
+                    return tag;
+            }
+        }
+
+        function createEndTagHTML(element) {
+            return '</' + element.widget + '>';
+        }
+
+        function getDataModel(name, callback){
+            RestClient({path: 'http://localhost:8080/DataModel/'+name+'.json'}).then(function (response) {
+                callback(response.entity)
+            });
+        }
+
+        function changeView(name) {
+            var sustenagro = document.getElementsByTagName('swc-sustenagro')[0];
+            var renderDiv = document.querySelector('iron-pages > #'+name);
+            sustenagro.set('route.path', '/' + name);
+            if(sustenagro != null && renderDiv != null) {
+                getDataModel(name, function (response) {
+                    html = '';
+                    renderHTML(response);
+                    renderDiv.innerHTML = html;
+                });
+            }
+        }
+
+    </script>
+</dom-module>

@@ -1,0 +1,36 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+
+<dom-module id="swc-list">
+    <template>
+        <style>
+            .swc-list-style {
+                display: block;
+                height: 200px;
+                overflow-y: scroll;
+            }
+            label{
+                font-weight: 500;
+            }
+        </style>
+        <label>{{label}}</label>
+        <div class="swc-list-style">
+            <paper-radio-group aria-labelledby="{{id}}" allow-empty-selection>
+                <content></content>
+            </paper-radio-group>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'swc-list',
+            properties: {
+                id: String,
+                label: String
+            },
+            ready: function() {
+                //this.items = this.$.items.getDistributedNodes();
+            }
+        });
+    </script>
+</dom-module>
