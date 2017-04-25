@@ -50,9 +50,9 @@ class DSLSandbox extends GroovyValueFilter{
             ArrayList,
             Object[],
             LinkedHashMap,
-            /*DataReader,
             EvaluationObject,
-            Feature,
+            Feature
+            /*DataReader,
             Tab*/
     ] as Set
 }

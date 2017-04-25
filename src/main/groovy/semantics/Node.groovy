@@ -1,7 +1,28 @@
+/*
+ * Copyright (c) 2015-2016 Dilvan Moreira.
+ * Copyright (c) 2015-2016 John Garavito.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package semantics
 
 /**
- * Created by john on 4/10/17.
+ * Node
+ *
+ * @author Dilvan Moreira.
+ * @author John Garavito.
  */
 class Node {
     String URI
@@ -105,6 +126,15 @@ class Node {
         getAttr('?label', params)
     }
 
+    def getType(Map params = [:]){
+        getAttr('?type', params)
+    }
+
+    def getRange(Map params = [:]) {
+        //def result = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
+        getAttr('?range', params)
+    }
+
     /**
      * Get subclasses of a class
      * @param args
@@ -136,8 +166,25 @@ class Node {
      * Get superclasses of a class
      * @return
      */
-    def getSuperClass(){
-        getAttr('?superClass', ['FILTER': "?superClass != <$URI>"])
+    def getSuperClass(String args=''){
+        def argsList = args.tokenize(' ?')
+        def query = ''
+
+        argsList.each{
+            if(argsList.contains('label'))
+                query += "?id rdfs:label ?label."
+        }
+
+        query += "<$URI> rdfs:subClassOf ?id." +
+                 "FILTER(?id != <$URI>)"
+
+        def arg = ''
+
+        if(argsList.size()>0){
+            arg = "?" + ['label', 'id'].join(" ?")
+        }
+
+        k.select('distinct ?id '+arg).query(query)
     }
 
     /**
@@ -334,5 +381,14 @@ class Node {
             }
         }
         result
+    }
+
+    def getLabelDescription(String property) {
+        k.query("?id $property <$URI>; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != <$URI> )")
+    }
+
+    def isFunctional(){
+        def query = "<$URI> a owl:FunctionalProperty"
+        return (k.query(query).size() > 0)
     }
 }

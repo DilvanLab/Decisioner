@@ -3,23 +3,22 @@ package dsl
 import org.springframework.context.ApplicationContext
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
-import semantics.*
+import semantics.Know
 
 /**
- * Created by john on 4/6/17.
+ * Created by john on 4/18/17.
  */
 class DSL {
     private _ctx
     private Know _k
-    private _shell
     private _sandbox
     private _script
+    private _shell
 
-    private viewMap = []
-    private parentNode = null
+    def dataModel
 
     DSL(String filename, ApplicationContext applicationContext){
-        _ctx = applicationContext;
+        _ctx = applicationContext
         _k = _ctx.getBean('k')
 
         def _cc = new CompilerConfiguration()
@@ -33,118 +32,46 @@ class DSL {
 
         _script.setDelegate(this)
 
+        dataModel = [:]
+
         try {
-            _script.run()
+            def duration = benchmark(_script)
+            println "File '"+filename+"' execution took ${duration} ms"
         }
         finally {
             _sandbox.unregister()
         }
     }
 
-    def addNodeToViewMap(node, closure){
-        if(parentNode == null)
-            viewMap.push(node)
-        else
-            parentNode.children.push(node)
-
-        def tmpNode = parentNode
-        parentNode = node
-        closure()
-        parentNode = tmpNode
+    def getK(){
+        return _k
     }
 
-    def group(String id, Closure closure = {}){
-        def uri = _k.toURI(id)
-        def kNode = new Node(_k, uri)
-        def node = [id: uri, label: kNode['label'], children: []]
-
-        if(parentNode == null || parentNode.type != 'tabs'){
-            _createParentNode('tabs', 'swc-tabs-pages')
-        }
-        addNodeToViewMap(node, closure)
+    def getDataModel(){
+        //if(id == ''){
+        return this.dataModel
+        /*}
+        else{
+            return dataModel[id]
+        }*/
     }
 
-    def feature(Map attrs, String id, Closure closure = {}){
-        def uri = _k.toURI(id)
-        def feature = new Feature(uri, attrs, _ctx)
-        def kNode = new Node(_k, uri)
-        def tmpNode
-
-        def children = []
-
-        def subClasses = kNode.getSubClass('?label')
-
-        def grandChildren = kNode.getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight ?weightLabel')
-
-        if(parentNode == null || parentNode.type != 'tabs'){
-            _createParentNode('tabs', 'swc-tabs-pages')
-        }
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = feature
-
-        def divs = []
-        def widgets = []
-        def radio
-        def label
-
-        subClasses.each{ subClass ->
-            subClass['widget'] = 'h5'
-            grandChildren.each{
-                if(subClass.id == it.subClass) {
-                    tmpNode = new Node(_k, it.id)
-
-                    def valueTypes = tmpNode.collectionIndividualsTypes
-                    def categoryIndividuals = tmpNode.collectionIndividuals.capitalizeLabels()
-                    def weightIndividuals
-
-                    if(it.weight){
-                        weightIndividuals = tmpNode.weightIndividuals.capitalizeLabels()
-                    }
-
-                    widgets.push([widget: 'label', label: it.label])
-
-                    if(valueTypes.contains('http://purl.org/biodiv/semanticUI#Boolean') || valueTypes.contains('http://purl.org/biodiv/semanticUI#Categorical')){
-                        categoryIndividuals.each{ option ->
-                            radio = [widget: 'input', name: it.id, type: 'radio', value: option.id]
-                            label = [widget: 'label', label: option.label, children: [radio]]
-                            widgets.push([widget: 'div', children: [label]])
-                        }
-
-                    }else{
-                        widgets.push([widget: 'input', type: 'text'])
-                    }
-
-                    divs.push([widget: 'div', children: widgets])
-                    widgets = []
-
-                    //println valueTypes
-                    //println categoryIndividuals
-
-                }
-            }
-            def fieldSet = [widget: 'fieldset', id: subClass.id, children: [[widget: 'legend', children: [subClass]]]+divs]
-            divs = []
-            children.push(fieldSet)
-        }
-
-        def node = attrs + [id: uri, label: kNode.label, children: children]
-        addNodeToViewMap(node, closure)
+    def getContext(){
+        return _ctx
     }
 
-    def feature(String id, Closure closure = {}){
-        feature([:], id, closure)
+    def getSandbox(){return _sandbox}
+
+    def setScript(script){this._script = script}
+
+    def getScript(){return _script}
+
+    def getShell(){return _shell}
+
+    def benchmark(script) {
+        def start = System.currentTimeMillis()
+        script.run()
+        def now = System.currentTimeMillis()
+        now - start
     }
-
-    def getViewMap(){
-        return viewMap
-    }
-
-    def _createParentNode(String type, String widget){
-        def node = [type: type, widget: widget, children: []]
-        addNodeToViewMap(node, {})
-        parentNode = node
-    }
-
-
 }

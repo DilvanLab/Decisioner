@@ -54,6 +54,7 @@ dependencies {
     compile 'org.apache.jena:jena-iri:3.2.0'
 
     compile 'com.github.DilvanLab:GroovySparql:0.9.1'
+    compile 'com.github.slugify:slugify:2.1.9'
 
     profile "org.grails.profiles:rest-api"
     runtime "com.h2database:h2"
