@@ -19,8 +19,8 @@
 function Matrix(container, parameters){
     var params = parameters || {};
 
-    var width = params.width || 800;
-    var height= params.height || 600;
+    var width = params.width || 720;
+    var height= params.height || 480;
     var x= params.x || 0;
     var y= params.y || 0;
     var label_x= params.label_x || 'label X';

@@ -19,8 +19,8 @@
 function Semaphore(container, parameters){
 
     var params = parameters || {};
-    var width = params.width || 800;
-    var height= params.height || 600;
+    var width = params.width || 720;
+    var height= params.height || 480;
     var margin = 40;
     var semHeight = 320;
     var semWidth = width - 2*margin;

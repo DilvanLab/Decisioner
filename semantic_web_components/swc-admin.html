@@ -19,31 +19,27 @@
 <dom-module id="swc-admin">
     <template>
         <style include="iron-flex iron-flex-alignment">
-            body{
-                font-size: 14px;
-            }
-
             paper-toolbar {
-                color: #2196f3;
-                --paper-toolbar-background: #FFF;
+                color: #2196f3 ;
+                --paper-toolbar-background: #FFF ;
                 --paper-toolbar-title: {
-                    font-weight: bold;
+                    font-weight: bold ;
                 };
             }
 
             paper-toolbar span{
-                color: #000;
+                color: #000 ;
             }
 
             paper-button{
-                font-size: 12px;
-                color: #FFF;
-                background-color: #2196f3;
+                font-size: 12px ;
+                color: #FFF ;
+                background-color: #2196f3 ;
             }
 
             paper-tabs {
-                font-size: 16px;
-                --paper-tabs-selection-bar-color: #ddd;
+                font-size: 16px ;
+                --paper-tabs-selection-bar-color: #ddd ;
             }
         </style>
 
@@ -63,20 +59,11 @@
         </paper-toolbar>
 
         <iron-pages selected="{{selected}}">
-            <div class="horizontal layout">
-                <div class="flex">
-                    <div class="horizontal end-justified layout">
-
-                    </div>
-                    <swc-dsl-editor></swc-dsl-editor>
-                </div>
+            <div>
+                <swc-dsl-editor></swc-dsl-editor>
             </div>
-            <div class="horizontal layout">
-                <div class="flex">
-                    <div>
-                        <swc-ontology-editor></swc-ontology-editor>
-                    </div>
-                </div>
+            <div>
+                <swc-ontology-editor></swc-ontology-editor>
             </div>
         </iron-pages>
   </template>

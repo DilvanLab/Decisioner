@@ -46,30 +46,6 @@
 <dom-module id="swc-sustenagro">
     <template>
         <style>
-            app-toolbar {
-                background-color: rgba(255, 255, 255, 0.95);
-                box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
-            }
-
-            app-toolbar a{
-                pointer-events: auto;
-            }
-
-            paper-item{
-                cursor: pointer;
-            }
-
-            @media (max-width: 600px) {
-                section {
-                    padding: 0;
-                }
-            }
-
-            #logo{
-                 margin: 0px 20px;
-                 width: 120px;
-                 height: 60px;
-            }
         </style>
 
         <app-location route="{{route}}"></app-location>
@@ -161,8 +137,16 @@
                 for (var idx in elements) {
                     element = elements[idx];
 
-                    if(typeof element.type != 'undefined' && datatypes[element.type]){
-                        element.widget = datatypes[element.type];
+                    if(typeof element.type != 'undefined' && typeof element.widget == 'undefined'){
+                        if(datatypes[element.type]){
+                            element.widget = datatypes[element.type];
+                        }
+                        else{
+                            var name = element.type;
+                            name = name.substr(name.indexOf('#')+1);
+                            name = name.replace(/([A-Z])/g, "-$1").toLowerCase();
+                            element.widget = "swc-"+name
+                        }
                         html += createStartTagHTML(element);
                     }
 

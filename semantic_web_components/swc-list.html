@@ -5,20 +5,23 @@
 <dom-module id="swc-list">
     <template>
         <style>
-            .swc-list-style {
+            .div-scroll{
                 display: block;
                 height: 200px;
                 overflow-y: scroll;
             }
+
             label{
                 font-weight: 500;
             }
         </style>
+        <div>
         <label>{{label}}</label>
-        <div class="swc-list-style">
-            <paper-radio-group aria-labelledby="{{id}}" allow-empty-selection>
-                <content></content>
-            </paper-radio-group>
+            <div class="div-scroll">
+                <paper-radio-group aria-labelledby="{{id}}" allow-empty-selection>
+                    <content></content>
+                </paper-radio-group>
+            </div>
         </div>
     </template>
     <script>

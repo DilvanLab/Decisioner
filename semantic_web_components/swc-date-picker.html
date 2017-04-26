@@ -1,9 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-date-picker-item/paper-date-picker-item.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="swc-date-picker">
     <template>
-        <style>
+        <style include="iron-flex iron-flex-alignment">
             paper-date-picker-item {
                 display: inline-block;
             }
@@ -11,9 +12,13 @@
                 font-weight: 500;
             }
         </style>
-        <div>
-            <label>{{label}}</label>
-            <paper-date-picker-item id="{{id}}"></paper-date-picker-item>
+        <div class="horizontal layout">
+            <div class="flex">
+                <label>{{label}}</label>
+            </div>
+            <div class="flex">
+                <paper-date-picker-item id="{{id}}"></paper-date-picker-item>
+            </div>
         </div>
     </template>
     <script>

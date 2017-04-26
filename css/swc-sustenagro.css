@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+
+    background: #fff url(/images/sugarcane-field-transparent.jpeg) fixed;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+app-toolbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+}
+
+app-toolbar a{
+    pointer-events: auto;
+}
+
+paper-item{
+    cursor: pointer;
+}
+
+fieldset {
+    background-color: white;
+    margin: 15px 0px;
+    border: 0;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+fieldset > legend {
+    top: 10px;
+    left: 0;
+
+    margin: 0;
+    border: 0;
+
+    font-size: 14px;
+    font-family: Arial, Verdana, sans-serif;
+    color: #555;
+    text-transform: uppercase;
+    background-color: #fff;
+
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+fieldset > swc-category > div{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+paper-input,
+swc-category > div,
+swc-list > div,
+swc-date-picker > div{
+    margin: 15px 0px;
+    padding: 0px 15px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+swc-sustainability-matrix > div,
+swc-sustainability-semaphore > div{
+    margin: 15px 0px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+swc-date-picker label{
+    line-height: 48px;
+}
+
+swc-list paper-radio-button{
+    display: block !important;
+}
+
+swc-dsl-editor{
+    font-size: 14px !important;
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 0;
+    }
+}
+
+juicy-ace-editor {
+    margin: 15px 0px;
+    width: inherit;
+    min-height: 600px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+}
+
+.paper {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    background-color: rgba(255, 255, 255, 0.80);
+    box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+}
+
+.paper h4{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.form{
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+.form h4{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+juicy-ace-editor{
+    margin: 0 !important;
+}
+
+#logo{
+    margin: 0px 20px;
+    width: 120px;
+    height: 60px;
+}
