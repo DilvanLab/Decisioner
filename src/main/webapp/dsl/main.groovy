@@ -31,7 +31,14 @@ evaluationObject ':ProductionUnit', {
 
     // Origem da cana (própria, fornecedor, arrendamento)
     instance  ':hasSugarcaneSource', label: ['en': 'Sugarcane source', 'pt': "Origem da cana"], multipleSelection: true, required: true
+	
+    // Data de início do plantio
+    instance ':beginningOfPlantingDate', label: ['en': "Planting start date", 'pt': "Data de início do plantio"], placeholder: "dd/mm/yyyy"
 
+	// Data de início do plantio
+    instance ':harvestYear', label: ['en': 'Harvest (year)', 'pt': "Safra (Ano)"], placeholder: "yyyy"
+
+	
     // Estado da unidade produtiva
     instance 'dbp:state', label: ['en': 'State', 'pt': 'Estado']
 
@@ -41,12 +48,7 @@ evaluationObject ':ProductionUnit', {
     //Municípios envolvidos (localização da sede)
     instance ':municipalitiesInvolved', label: ['en': "Municipalities involved (unit location)", 'pt': "Municípios envolvidos (localização da sede)"], placeholder: "São Carlos, Jaguariúna, etc"
 
-    // Data de início do plantio
-    instance ':harvestYear', label: ['en': 'Harvest (year)', 'pt': "Safra (Ano)"], placeholder: "yyyy"
-
-    // Data de início do plantio
-    instance ':beginningOfPlantingDate', label: ['en': "Planting start date", 'pt': "Data de início do plantio"], placeholder: "dd/mm/yyyy"
-
+    
     // Data de término do plantio
     instance ':finishOfPlantingDate', label: ['en': "Planting end date" ,'pt': "Data de término do plantio"], placeholder: "dd/mm/yyyy"
 
@@ -147,5 +149,4 @@ report {
                      ['en': 'Positive changes', 'pt': 'Alterações positivas'],
                      ['en': 'Higher sustainability', 'pt': 'Mais sustentável']],
             range: [-43,43]
-
 }
