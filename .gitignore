@@ -1,8 +1,4 @@
-build/
-.idea
+bower_components/
+.idea/
 *.iml
-*.ipr
-*.iws
-.project
-.settings
-.classpath
+
