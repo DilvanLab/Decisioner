@@ -1,13 +1,6 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-
-    background: #fff url(/images/sugarcane-field-transparent.jpeg) fixed;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 app-toolbar {
@@ -93,6 +86,15 @@ juicy-ace-editor {
     min-height: 600px;
     border: 1px solid #DDD;
     border-radius: 4px;
+}
+
+.background{
+    background: #fff url(/images/sugarcane-field-transparent.jpeg) fixed;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .paper {

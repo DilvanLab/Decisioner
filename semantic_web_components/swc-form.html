@@ -1,17 +1,18 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="swc-form">
     <template>
-        <style>
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
             .horizontal-center {
                 @apply(--layout-horizontal);
                 @apply(--layout-center-justified);
             }
 
-            paper-button.indigo {
+            .indigo {
                 background-color: var(--paper-indigo-500);
                 color: white;
                 --paper-button-raised-keyboard-focus: {
@@ -20,7 +21,7 @@
                 };
             }
 
-            paper-button.indigo:hover {
+            .indigo:hover {
                 background-color: var(--paper-indigo-400);
             }
 
