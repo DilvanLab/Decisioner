@@ -156,7 +156,7 @@ class DecisionerDSL extends DSL{
                     if(valueTypes.contains('http://purl.org/biodiv/semanticUI#Boolean') || valueTypes.contains(categoricalURI)){
                         options = []
                         categoryIndividuals.each{ option ->
-                            options.push([type: categoricalURI, name: option.id, label: option.label])
+                            options.push([type: categoricalURI, name: it.id, value: option.id, label: option.label])
                         }
                         features.push([type: featureURI, 'id': it.id, label: it.label, children: options])
 
