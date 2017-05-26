@@ -42,8 +42,8 @@ class EvaluationObject {
         if(data.size() > 0){
             data.each{
                 it['type'] = k.toURI('ui:Categorical')
-                it['name'] = uri
-                it['value'] = it['id']
+                it['name'] = it['id']//id
+                //it['value'] = it['id']
 
                 it.remove('id')
             }
