@@ -1,0 +1,2159 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://semantic.icmc.usp.br/sustenagro#"
+     xml:base="http://semantic.icmc.usp.br/sustenagro"
+     xmlns:dbp="http://dbpedia.org/ontology/"
+     xmlns:ui="http://purl.org/biodiv/semanticUI#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://semantic.icmc.usp.br/sustenagro#"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title">
+        <rdfs:label xml:lang="en">title</rdfs:label>
+        <rdfs:label xml:lang="pt">título</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#relevance -->
+
+    <owl:AnnotationProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#relevance">
+        <rdfs:label xml:lang="en">relevance</rdfs:label>
+        <rdfs:label xml:lang="pt">relevância</rdfs:label>
+        <rdfs:domain rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+        <rdfs:label xml:lang="en">label</rdfs:label>
+        <rdfs:label xml:lang="pt">nome</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dbpedia.org/ontology/hasPart -->
+
+    <owl:ObjectProperty rdf:about="http://dbpedia.org/ontology/hasPart">
+        <rdfs:label xml:lang="en">has part</rdfs:label>
+        <rdfs:label xml:lang="pt">tem parte</rdfs:label>
+        <owl:inverseOf rdf:resource="http://dbpedia.org/ontology/isPartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dbpedia.org/ontology/isPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://dbpedia.org/ontology/isPartOf">
+        <rdfs:label xml:lang="en">part of</rdfs:label>
+        <rdfs:label xml:lang="pt">parte de</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dbpedia.org/ontology/state -->
+
+    <owl:ObjectProperty rdf:about="http://dbpedia.org/ontology/state">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has state</rdfs:label>
+        <rdfs:label xml:lang="pt">tem estado</rdfs:label>
+        <rdfs:range rdf:resource="http://dbpedia.org/ontology/State"/>
+        <rdfs:subPropertyOf rdf:resource="http://dbpedia.org/ontology/isPartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasEvaluationObject -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#hasEvaluationObject">
+        <rdfs:label xml:lang="en">has evaluation object</rdfs:label>
+        <rdfs:label xml:lang="pt">tem objeto de avalição</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasMicroregion -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#hasMicroregion">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">tem microregion</rdfs:label>
+        <rdfs:range rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasOwner -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#hasOwner">
+        <rdfs:label xml:lang="en">has owner</rdfs:label>
+        <rdfs:label xml:lang="pt">tem proprietário</rdfs:label>
+        <rdfs:range rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasRole -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#hasRole">
+        <rdfs:label xml:lang="en">has role</rdfs:label>
+        <rdfs:label xml:lang="pt">tem perfil</rdfs:label>
+        <rdfs:range rdf:resource="http://purl.org/biodiv/semanticUI#Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasWeight -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#hasWeight">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has weight</rdfs:label>
+        <rdfs:label xml:lang="pt">tem peso</rdfs:label>
+        <rdfs:range rdf:resource="http://purl.org/biodiv/semanticUI#Value"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#value -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#value">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has value</rdfs:label>
+        <rdfs:label xml:lang="pt">tem valor</rdfs:label>
+        <rdfs:range rdf:resource="http://purl.org/biodiv/semanticUI#Value"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">agricultural production system</rdfs:label>
+        <rdfs:label xml:lang="pt">sistema de produção agrícola</rdfs:label>
+        <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">availability of evaluations results</rdfs:label>
+        <rdfs:label xml:lang="pt">disponibilização dos resultados da avaliação</rdfs:label>
+        <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">sugarcane source</rdfs:label>
+        <rdfs:label xml:lang="pt">origem da cana</rdfs:label>
+        <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dbpedia.org/property/pt/mapa -->
+
+    <owl:DatatypeProperty rdf:about="http://dbpedia.org/property/pt/mapa">
+        <rdfs:label xml:lang="en">map</rdfs:label>
+        <rdfs:label xml:lang="pt">mapa</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#asNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#asNumber">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">as number</rdfs:label>
+        <rdfs:label xml:lang="pt">valor numérico</rdfs:label>
+        <rdfs:domain rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/biodiv/semanticUI#dataValue"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#createdAt -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#createdAt">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">create at</rdfs:label>
+        <rdfs:label xml:lang="pt">criado no</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#dataValue -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#dataValue">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">data value</rdfs:label>
+        <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasEmail -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasEmail">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">email</rdfs:label>
+        <rdfs:label xml:lang="pt">email</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">name</rdfs:label>
+        <rdfs:label xml:lang="pt">nome</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasOrganization -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasOrganization">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">organization</rdfs:label>
+        <rdfs:label xml:lang="pt">organização</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasPassword -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasPassword">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">password</rdfs:label>
+        <rdfs:label xml:lang="pt">senha</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasPhoneNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasPhoneNumber">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">phone number</rdfs:label>
+        <rdfs:label xml:lang="pt">número de telefone</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasPosition -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasPosition">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">position</rdfs:label>
+        <rdfs:label xml:lang="pt">cargo</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasSurname -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasSurname">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">surname</rdfs:label>
+        <rdfs:label xml:lang="pt">sobrenome</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasUsername -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasUsername">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">username</rdfs:label>
+        <rdfs:label xml:lang="pt">nome de usuário</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#updateAt -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#updateAt">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">update at</rdfs:label>
+        <rdfs:label xml:lang="pt">autalizado no</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#beginningOfHarvestDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#beginningOfHarvestDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">beginning of harvest date</rdfs:label>
+        <rdfs:label xml:lang="pt">data de início da colheita</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#beginningOfPlantingDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#beginningOfPlantingDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">beginning of planting date</rdfs:label>
+        <rdfs:label xml:lang="pt">data de início do plantio</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#canavialLongevity -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#canavialLongevity">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">canavial longevity</rdfs:label>
+        <rdfs:label xml:lang="pt">longevidade do canavial</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#establishmentDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#establishmentDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">establishment date</rdfs:label>
+        <rdfs:label xml:lang="pt">data de fundação da unidade produção</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#financing -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#financing">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">financing</rdfs:label>
+        <rdfs:label xml:lang="pt">financiamento (crédito agrícola - custeio de maquinário - BNDES)</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#finishOfHarvestDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#finishOfHarvestDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">finish of harvest date</rdfs:label>
+        <rdfs:label xml:lang="pt">data de término da colheita</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#finishOfPlantingDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#finishOfPlantingDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">finish of planting date</rdfs:label>
+        <rdfs:label xml:lang="pt">data de término do plantio</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#harvestYear -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#harvestYear">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">harvest year</rdfs:label>
+        <rdfs:label xml:lang="pt">ano da safra</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasJustification -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasJustification">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">justification</rdfs:label>
+        <rdfs:label xml:lang="pt">justificativa</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasTotalValuePlaneedForInvestmentToProductionDrainage -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasTotalValuePlaneedForInvestmentToProductionDrainage">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has total value planed for investment to production drainage</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total previsto para investimento para escoamento da produção</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#innovationDevelopmentProjects -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#innovationDevelopmentProjects">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">innovation development projects</rdfs:label>
+        <rdfs:label xml:lang="pt">projetos de inovação e/ou desenvolvimento (BNDES - Finep)</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#municipalitiesInvolved -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#municipalitiesInvolved">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">municipalities involved</rdfs:label>
+        <rdfs:label xml:lang="pt">municípios envolvidos</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#otherMicroregion -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#otherMicroregion">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">other microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">outra microrregião</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#partnershipsForResearchOrImprovementOfTheSystem -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#partnershipsForResearchOrImprovementOfTheSystem">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">partnerships for research or improvement of the system</rdfs:label>
+        <rdfs:label xml:lang="pt">parcerias para pesquisa ou aprimoramento do sistema</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dbpedia.org/ontology/AdministrativeRegion -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/AdministrativeRegion">
+        <rdfs:label xml:lang="en">Administrative region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região administrativa</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Region"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/City -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/City">
+        <rdfs:label xml:lang="en">City</rdfs:label>
+        <rdfs:label xml:lang="pt">Cidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Settlement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Country -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Country">
+        <rdfs:label xml:lang="en">Country</rdfs:label>
+        <rdfs:label xml:lang="pt">País</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/GovernmentalAdministrativeRegion -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion">
+        <rdfs:label xml:lang="en">Governmental administrative region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região administrativa governamental</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/AdministrativeRegion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Municipality -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Municipality">
+        <rdfs:label xml:lang="en">Municipality</rdfs:label>
+        <rdfs:label xml:lang="pt">Município</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Place -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Place">
+        <rdfs:label xml:lang="en">Place</rdfs:label>
+        <rdfs:label xml:lang="pt">Lugar</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/PopulatedPlace -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/PopulatedPlace">
+        <rdfs:label xml:lang="en">Populated place</rdfs:label>
+        <rdfs:label xml:lang="pt">Lugar povoado</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Provider -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Provider">
+        <rdfs:label xml:lang="en">Provider</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecedor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Region -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Region">
+        <rdfs:label xml:lang="en">Region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Settlement -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Settlement">
+        <rdfs:label xml:lang="en">Settlement</rdfs:label>
+        <rdfs:label xml:lang="pt">Assentamento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/State -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/State">
+        <rdfs:label xml:lang="en">State</rdfs:label>
+        <rdfs:label xml:lang="pt">Estado</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/page/Mesoregion_(Brazil) -->
+
+    <owl:Class rdf:about="http://dbpedia.org/page/Mesoregion_(Brazil)">
+        <rdfs:label xml:lang="en">Mesoregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Meso região</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/page/Microregion_(Brazil) -->
+
+    <owl:Class rdf:about="http://dbpedia.org/page/Microregion_(Brazil)">
+        <rdfs:label xml:lang="en">Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microregião</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/resource/PhysicalPlant -->
+
+    <owl:Class rdf:about="http://dbpedia.org/resource/PhysicalPlant">
+        <rdfs:label xml:lang="en">Plant</rdfs:label>
+        <rdfs:label xml:lang="pt">Usina</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Analysis -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Analysis">
+        <rdfs:label xml:lang="en">Analysis</rdfs:label>
+        <rdfs:label xml:lang="pt">Análise</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Boolean -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Boolean">
+        <rdfs:label xml:lang="en">Boolean</rdfs:label>
+        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Categorical -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Categorical">
+        <rdfs:label xml:lang="en">Categorical</rdfs:label>
+        <rdfs:label xml:lang="pt">Categórico</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Value"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#EvaluationObject -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#EvaluationObject">
+        <rdfs:label xml:lang="en">Evaluation object</rdfs:label>
+        <rdfs:label xml:lang="pt">Objeto de avaliação</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Feature -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Feature">
+        <rdfs:label xml:lang="en">Feature</rdfs:label>
+        <rdfs:label xml:lang="pt">Característica</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Integer -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Integer">
+        <rdfs:label xml:lang="en">Integer</rdfs:label>
+        <rdfs:label xml:lang="pt">Inteiro</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Real"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#dataValue"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Real -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Real">
+        <rdfs:label xml:lang="en">Real</rdfs:label>
+        <rdfs:label xml:lang="pt">Real</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Value"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Role -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Role">
+        <rdfs:label xml:lang="en">Role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#User -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#User">
+        <rdfs:label xml:lang="en">User</rdfs:label>
+        <rdfs:label xml:lang="pt">Usuário</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Value -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Value">
+        <rdfs:label xml:lang="en">Value</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Weighted -->
+
+    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Weighted">
+        <rdfs:label xml:lang="en">Weighted</rdfs:label>
+        <rdfs:label xml:lang="pt">Ponderado</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Feature"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasWeight"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/biodiv/semanticUI#Value"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory">
+        <rdfs:label xml:lang="en">Agricultural production system category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de sistema de produção agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ApplicationAreaNanoparticleNearTheResidencesOnTheFarm -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ApplicationAreaNanoparticleNearTheResidencesOnTheFarm">
+        <rdfs:label xml:lang="en">Application Area nanoparticle near the residences on the farm</rdfs:label>
+        <rdfs:label xml:lang="pt">Área de aplicação da Nanopartícula próximo as residências na fazenda</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory">
+        <rdfs:label xml:lang="en">Availability of evaluations results category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria da disponibilização dos resultados da avaliação</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#BalanceChangeOfSoilBiota -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#BalanceChangeOfSoilBiota">
+        <rdfs:label xml:lang="en">Emergence of bacterial and or fungal resistance due to exposure to the silver nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Alteração do equilíbrio da biota do solo ocasionado pela exposição à nanopartícula contendo nanotubos de carbono</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#BiodegradabilityCharacteristics -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#BiodegradabilityCharacteristics">
+        <rdfs:label xml:lang="en">The nanoparticle does not have biodegradability characteristics causing accumulation in the aquatic environment</rdfs:label>
+        <rdfs:label xml:lang="pt">A Nanoparticula não possui características de biodegradabilidade ocasionando acúmulo em ambiente aquático</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ChanginTheBalanceOfSoilBiota -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ChanginTheBalanceOfSoilBiota">
+        <rdfs:label xml:lang="en">Changing the balance of soil biota caused by exposure to nanoparticle containing carbon nanotubes</rdfs:label>
+        <rdfs:label xml:lang="pt">Alteração do Equilíbrio da biota do solo ocasionado pela exposição à Nanoparticula contendo nanotubos de carbono</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ClassesOrNanoProductCategorySubjectToTechnicalBarriers -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ClassesOrNanoProductCategorySubjectToTechnicalBarriers">
+        <rdfs:label xml:lang="en">Classes / Categoria de Nanoproduto sujeito a barreiras técnicas impostas por outros países para os produtos nanotecnológicos sem regulamentação</rdfs:label>
+        <rdfs:label xml:lang="pt">Classes or Nano Product Category subject to technical barriers imposed by other countries for nanotechnological products regulations</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ComponentInFoodFormulationThatHaveCrossedTheMembraneTissue -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ComponentInFoodFormulationThatHaveCrossedTheMembraneTissue">
+        <rdfs:label xml:lang="en">Previous reports of nanoparticle component in food formulation that have crossed the membrane tissue</rdfs:label>
+        <rdfs:label xml:lang="pt">Relatos anteriores de componente da Nanopartícula na formulação do alimento que tenham atravessado a membrana dos tecidos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ContaminationOfThisFoodInPackaging -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ContaminationOfThisFoodInPackaging">
+        <rdfs:label xml:lang="en">Food contamination with nanoparticles present in packaging</rdfs:label>
+        <rdfs:label xml:lang="pt">Contaminação do alimento com nanopartícula presente na embalagem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#EmergenceOfBacterialAndOrFungalResistance -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EmergenceOfBacterialAndOrFungalResistance">
+        <rdfs:label xml:lang="en">Emergence of bacterial and / or fungal resistance due to exposure to the silver nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Surgimento de resistência bacteriana e/ou fúngica em decorrência a exposição à nanopartícula de prata</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#EmergenceOfToxicityDueToImpurity -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EmergenceOfToxicityDueToImpurity">
+        <rdfs:label xml:lang="en">Emergence of toxicity due to the impurity associated with Nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Surgimento de toxicidade em decorrência da impureza associada à Nanoparticula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Environmental -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Environmental">
+        <rdfs:label xml:lang="en">Environmental</rdfs:label>
+        <rdfs:label xml:lang="pt">Ambiental</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#EquivalentResultsOfTheToxicologicalTestWithAnotherParticleOrSubstanceKnownInTheLiterature -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EquivalentResultsOfTheToxicologicalTestWithAnotherParticleOrSubstanceKnownInTheLiterature">
+        <rdfs:label xml:lang="en">equivalent results of the toxicological test with another particle or substance known in the literature</rdfs:label>
+        <rdfs:label xml:lang="pt">Resultado equivalente do teste toxicológico com outra partícula ou substância conhecida na literatura</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#EvaluationOfTheRelationshipDoseResponse -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EvaluationOfTheRelationshipDoseResponse">
+        <rdfs:label xml:lang="en">Evaluation of the relationship dose response for nanoparticle with toxic potential before its release</rdfs:label>
+        <rdfs:label xml:lang="pt">Avaliação da relação dose/resposta da Nanopartícula com potencial tóxico antes da sua liberação</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ExistNo -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ExistNo">
+        <rdfs:label xml:lang="en">Exist/No exist</rdfs:label>
+        <rdfs:label xml:lang="pt">Existe/Não existe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ExposureToDamageCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ExposureToDamageCategory">
+        <rdfs:label xml:lang="en">Exposure to Damage category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de Exposição ao Dano</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ExtentOfDamageCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ExtentOfDamageCategory">
+        <rdfs:label xml:lang="en">Extent of damage category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de Extensão do dano</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological">
+        <rdfs:label xml:lang="en">Features Toxicological and Ecotoxicological</rdfs:label>
+        <rdfs:label xml:lang="pt">Características Toxicológicas e Ecotoxicológicas</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth">
+        <rdfs:label xml:lang="en">Food and human health</rdfs:label>
+        <rdfs:label xml:lang="pt">Alimentar e saúde humana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#FoodContainingNanoparticlesDoesNotMeetTheRegulations -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#FoodContainingNanoparticlesDoesNotMeetTheRegulations">
+        <rdfs:label xml:lang="en">Food containing nanoparticles does not meet the regulations described in Law 5478 on food</rdfs:label>
+        <rdfs:label xml:lang="pt">Alimento contendo nanopartícula não atende a regulamentação descrita na Lei 5.478 sobre alimentos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#GenotoxicityInVitro -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#GenotoxicityInVitro">
+        <rdfs:label xml:lang="en">Positive outcome of the genotoxicity in vitro test</rdfs:label>
+        <rdfs:label xml:lang="pt">Resultado positivo do teste de genotoxicidade in vitro</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Harvest -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Harvest">
+        <rdfs:label xml:lang="en">Harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Safra</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#HomologyWithAnyKnownTechnologyWhichPresentsToxicity -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#HomologyWithAnyKnownTechnologyWhichPresentsToxicity">
+        <rdfs:label xml:lang="en">The nanoparticle has homology with any known technology which presents toxicity</rdfs:label>
+        <rdfs:label xml:lang="pt">A nanopartícula possui homologia com alguma tecnologia conhecida que apresenta toxicidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ImproperUseOfNanotechnology -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ImproperUseOfNanotechnology">
+        <rdfs:label xml:lang="en">Possibility of improper use of nanotechnology</rdfs:label>
+        <rdfs:label xml:lang="pt">Possibilidade de uso impróprio da nanotecnologia</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#UnexpectedOcurrences"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#InPregnantAdverseEffectWhenExposedToNanoparticle -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#InPregnantAdverseEffectWhenExposedToNanoparticle">
+        <rdfs:label xml:lang="en">in pregnant adverse effect when exposed to nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Efeito negativo em gestantes quando exposta à Nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#InVitroToxicity -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#InVitroToxicity">
+        <rdfs:label xml:lang="en">Positive for the Test in vitro toxicity</rdfs:label>
+        <rdfs:label xml:lang="pt">Resultado positivo para o Teste de toxicidade in vitro</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#InVivoToxicity -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#InVivoToxicity">
+        <rdfs:label xml:lang="en">Positive for the Test in vivo toxicity</rdfs:label>
+        <rdfs:label xml:lang="pt">Resultado positivo para o Teste de toxicidade in vivo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#InabilityOfTheNanoparticleIsBiodegradable -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#InabilityOfTheNanoparticleIsBiodegradable">
+        <rdfs:label xml:lang="en">Inability of the nanoparticle is biodegradable</rdfs:label>
+        <rdfs:label xml:lang="pt">Incapacidade da Nanopartícula ser biodegradável</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#IncreasedPollutionDueToTheIntroductionOfNewTechnology -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#IncreasedPollutionDueToTheIntroductionOfNewTechnology">
+        <rdfs:label xml:lang="en">Increased pollution due to the introduction of new technology</rdfs:label>
+        <rdfs:label xml:lang="pt">Aumento de poluentes em função da introdução da nova tecnologia</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#IncreasedSolubilityAndTheDispersionInNature -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#IncreasedSolubilityAndTheDispersionInNature">
+        <rdfs:label xml:lang="en">Increased solubility and the dispersion of nanoparticles in nature</rdfs:label>
+        <rdfs:label xml:lang="pt">Aumento da solubilidade e dispersão da Nanopartícula na natureza</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#IncreasedVulnerabilityToPestsAndDiseases -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#IncreasedVulnerabilityToPestsAndDiseases">
+        <rdfs:label xml:lang="en">Increased vulnerability to pests and diseases as a result of exposure to nanoparticles</rdfs:label>
+        <rdfs:label xml:lang="pt">Aumento da vulnerabilidade a praga e doenças em decorrência da exposição a Nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Indicator -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Indicator">
+        <rdfs:label xml:lang="en">Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Feature"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#value"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#InhibitionOfRootGrowthDueToExposureToNanoparticles -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#InhibitionOfRootGrowthDueToExposureToNanoparticles">
+        <rdfs:label xml:lang="en">Inhibition of root growth due to exposure to nanoparticles</rdfs:label>
+        <rdfs:label xml:lang="pt">Inibição do crescimento radicular em decorrência a exposição a Nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#InhibitionOnThePlantsAbilityToFixNitrogen -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#InhibitionOnThePlantsAbilityToFixNitrogen">
+        <rdfs:label xml:lang="en">Inhibition on the plant&apos;s ability to fix nitrogen</rdfs:label>
+        <rdfs:label xml:lang="pt">Inibição na capacidade da planta em fixar nitrogênio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#LackOfDiscussionForumsOrExperts -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#LackOfDiscussionForumsOrExperts">
+        <rdfs:label xml:lang="en">Lack of discussion forums or experts available to inform the population on matters related to the subject</rdfs:label>
+        <rdfs:label xml:lang="pt">Ausência de fóruns de discussão ou especialistas disponíveis para esclarecer a população sobre assuntos relacionados ao tema</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#LackOfInformationAboutTheSafetyOfMarketedNanotechnologyProducts -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#LackOfInformationAboutTheSafetyOfMarketedNanotechnologyProducts">
+        <rdfs:label xml:lang="en">Lack of information about the safety of marketed nanotechnology products</rdfs:label>
+        <rdfs:label xml:lang="pt">Falta de informação sobre a segurança dos produtos nanotecnológicos comercializados</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#MagnitudeCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#MagnitudeCategory">
+        <rdfs:label xml:lang="en">Magnitude category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de Magnitude</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ManagementTypeOfNanoparticleDispersionThatPresentsHealthRisk -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ManagementTypeOfNanoparticleDispersionThatPresentsHealthRisk">
+        <rdfs:label xml:lang="en">Management type of nanoparticle dispersion that presents health risk</rdfs:label>
+        <rdfs:label xml:lang="pt">Tipo de manejo em dispersão da Nanopartícula que apresenta risco a saúde</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#MarketingSaidNanotechnologicalProductsThatPresentARiskToHealthAndEnvironment -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#MarketingSaidNanotechnologicalProductsThatPresentARiskToHealthAndEnvironment">
+        <rdfs:label xml:lang="en">Marketing said nanotechnological products (no technical evidence) that present a risk to health and environment</rdfs:label>
+        <rdfs:label xml:lang="pt">Comercialização de produtos ditos nanotecnológicos (sem evidências técnicas) que apresentam risco a saúde e ambiente</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#MismanagementProductContainingAerosol -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#MismanagementProductContainingAerosol">
+        <rdfs:label xml:lang="en">Mismanagement product containing aerosol Nanoparticles may cause a greater dispersion</rdfs:label>
+        <rdfs:label xml:lang="pt">Manejo inadequado do produto em aerosol contendo Nanopartícula podendo ocasionar uma maior dispersão</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#MortalityInNonTargetPlants -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#MortalityInNonTargetPlants">
+        <rdfs:label xml:lang="en">Mortality in non-target plants caused by exposure to nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Mortalidade em plantas não-alvos causada pela exposição à nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#MortalityInNonTargetPlantsCausedByExposure -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#MortalityInNonTargetPlantsCausedByExposure">
+        <rdfs:label xml:lang="en">Mortality in non-target plants caused by exposure to nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Mortalidade em plantas não-alvos causada pela exposição à nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NanoAgriculturalProductDoesNotMeetTheRegulations -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#NanoAgriculturalProductDoesNotMeetTheRegulations">
+        <rdfs:label xml:lang="en">Nano Agricultural product does not meet the regulations described in Federal Law 7.802 on pesticides</rdfs:label>
+        <rdfs:label xml:lang="pt">Nanoproduto agrícola não atende a regulamentação descrita na Lei Federal 7.802 sobre agrotóxicos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Nanoparticle -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Nanoparticle">
+        <rdfs:label xml:lang="en">Nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Nanoparticula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#EvaluationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NeedContainmentMeasuresForStorage -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#NeedContainmentMeasuresForStorage">
+        <rdfs:label xml:lang="en">Need containment measures for storage of generated waste to disposal</rdfs:label>
+        <rdfs:label xml:lang="pt">Necessidade de medidas de contenção para armazenamento dos resíduos gerados até o seu descarte</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NegativeEffectToOccurInNonTargetOrganism -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#NegativeEffectToOccurInNonTargetOrganism">
+        <rdfs:label xml:lang="en">Negative Effect to occur in non-target organism</rdfs:label>
+        <rdfs:label xml:lang="pt">Ocorrência de efeito negativo em organismo não-alvo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NonPublicAcceptanceOfNanotechnologyProducts -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#NonPublicAcceptanceOfNanotechnologyProducts">
+        <rdfs:label xml:lang="en">Risk associated with non-public acceptance of nanotechnology products marketed</rdfs:label>
+        <rdfs:label xml:lang="pt">Risco associado a não aceitação pública dos produtos nanotecnológicos comercializados</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#OccurrenceInstabilityOfNanoparticle -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#OccurrenceInstabilityOfNanoparticle">
+        <rdfs:label xml:lang="en">Occurrence Instability Of Nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">Ocorrência de instabilidade da Nanoparticula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#OccurrenceOfAdverseEffectByDispersionContainingTheAgrochemical -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#OccurrenceOfAdverseEffectByDispersionContainingTheAgrochemical">
+        <rdfs:label xml:lang="en">Occurrence of adverse effect by dispersion of the agrochemical containing nanoparticle beyond the limits of the target organism (eg plant)</rdfs:label>
+        <rdfs:label xml:lang="pt">Ocorrência de efeito negativo pela dispersão do agroquímico contendo a Nanopartícula além dos limites do organismo alvo (ex planta)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#OccurrenceOfBioaccumulationInTheSoil -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#OccurrenceOfBioaccumulationInTheSoil">
+        <rdfs:label xml:lang="en">Occurrence of bio accumulation of nanoparticles in soil and likely negative effect on biodiversity</rdfs:label>
+        <rdfs:label xml:lang="pt">Ocorrência de bioacúmulo da Nanoparticula no solo e provável efeito negativo na biodiversidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#OccurrenceOfLeafLoss -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#OccurrenceOfLeafLoss">
+        <rdfs:label xml:lang="en">Occurrence of leaf loss due to exposure to nanoparticles</rdfs:label>
+        <rdfs:label xml:lang="pt">Ocorrência de perda foliar devido a exposição a Nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#OccurrenceOfNegativeEffectOfTheNanoparticleInWater -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#OccurrenceOfNegativeEffectOfTheNanoparticleInWater">
+        <rdfs:label xml:lang="en">Occurrence of negative effect of the nanoparticle in water due to dispersion of the agrochemical (eg change in water quality and / or modification of aquatic biodiversity)</rdfs:label>
+        <rdfs:label xml:lang="pt">Ocorrência de efeito negativo da Nanopartícula na água devido a dispersão do agroquímico (ex alteração da qualidade da água e/ou alteração da biodiversidade aquática)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Environmental"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PersistenceOfNanoparticleInorganicInNature -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PersistenceOfNanoparticleInorganicInNature">
+        <rdfs:label xml:lang="en">Persistence of nanoparticle inorganic in nature</rdfs:label>
+        <rdfs:label xml:lang="pt">Persistência da Nanoparticula inorgânica na natureza</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PossibilityOfNanoparticleToFormClusters -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PossibilityOfNanoparticleToFormClusters">
+        <rdfs:label xml:lang="en">Possibility of nanoparticle to form clusters</rdfs:label>
+        <rdfs:label xml:lang="pt">Possibilidade da nanoparticula em formar aglomerados</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PotentialAccumulationInTheBody -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PotentialAccumulationInTheBody">
+        <rdfs:label xml:lang="en">Food nanoparticle has potential accumulation in the body that affects human and animal health</rdfs:label>
+        <rdfs:label xml:lang="pt">A nanopartícula alimentar possui potencial de acúmulo no organismo que compromete a saúde humana e animal</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PrecedentCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PrecedentCategory">
+        <rdfs:label xml:lang="en">Precedent category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de Precedente</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PrecursorMaterialPresentsRiskToHealthAndOrEnvironment -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PrecursorMaterialPresentsRiskToHealthAndOrEnvironment">
+        <rdfs:label xml:lang="en">The precursor material used for the nanoparticle formulation presents risk to the health and / or environment and can compromise the security of nanoproduct</rdfs:label>
+        <rdfs:label xml:lang="pt">O material precursor utilizado para formulação da Nanoparticula apresenta risco a saúde e/ou ambiente podendo comprometer a segurança do nanoproduto</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PresenceOfContaminantsInSample -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PresenceOfContaminantsInSample">
+        <rdfs:label xml:lang="en">The presence of contaminants in the sample</rdfs:label>
+        <rdfs:label xml:lang="pt">Presença de contaminantes na amostra</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PresenceOfMetallicNanoparticleInTheCompositionOfWraps -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PresenceOfMetallicNanoparticleInTheCompositionOfWraps">
+        <rdfs:label xml:lang="en">Presence of metallic nanoparticle in the composition of wraps (film) and / or packaging</rdfs:label>
+        <rdfs:label xml:lang="pt">Presença de Nanopartícula metálicas na composição dos envoltórios (filmes) e/ou embalagens</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PresenceOfToxicParticlesAssociatedWithTheNanoparticle -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PresenceOfToxicParticlesAssociatedWithTheNanoparticle">
+        <rdfs:label xml:lang="en">ETCS)</rdfs:label>
+        <rdfs:label>fullerene</rdfs:label>
+        <rdfs:label xml:lang="pt">Presença de partícula tóxicas associados a nanopartícula</rdfs:label>
+        <rdfs:label>silver</rdfs:label>
+        <rdfs:label>Presence of toxic particles associated with the nanoparticle (metal oxides</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PreviousOccurrenceReportOfDamageToHumanAndAnimalHealth -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PreviousOccurrenceReportOfDamageToHumanAndAnimalHealth">
+        <rdfs:label xml:lang="en">Previous occurrence report of damage to human and animal health caused by exposure to nanoparticles</rdfs:label>
+        <rdfs:label xml:lang="pt">Relato de ocorrência anterior de algum dano a saúde humana e animal ocasionado pela exposição a Nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FeaturesToxicologicalAndEcotoxicological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory">
+        <rdfs:label xml:lang="en">Production environment alignment</rdfs:label>
+        <rdfs:label xml:lang="pt">Alinhamento ao ambiente de produção/produtor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ProductionUnit -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ProductionUnit">
+        <rdfs:label xml:lang="en">Production unit</rdfs:label>
+        <rdfs:label xml:lang="pt">Unidade produtiva</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#EvaluationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasMicroregion"/>
+                <owl:someValuesFrom rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#harvestYear"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://dbpedia.org/ontology/state"/>
+                <owl:someValuesFrom rdf:resource="http://dbpedia.org/ontology/State"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#PublicPerceptionSignaledTheNeedForLabelingOfProductsContainingNanoparticle -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PublicPerceptionSignaledTheNeedForLabelingOfProductsContainingNanoparticle">
+        <rdfs:label xml:lang="en">Public perception signaled the need for labeling of products containing nanoparticle</rdfs:label>
+        <rdfs:label xml:lang="pt">A percepção pública sinalizou a necessidade de rotulagem dos produtos contendo Nanopartícula</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ReactivityOfNanoparticleWhenExposedToTheEnvironment -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ReactivityOfNanoparticleWhenExposedToTheEnvironment">
+        <rdfs:label xml:lang="en">Reactivity of nanoparticle when exposed to the environment</rdfs:label>
+        <rdfs:label xml:lang="pt">Reatividade da nanoparticula quando exposto ao meio ambiente</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ReversibilityCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ReversibilityCategory">
+        <rdfs:label xml:lang="en">Reversibility category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de Reversibilidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors">
+        <rdfs:label xml:lang="en">Risk exposure factors</rdfs:label>
+        <rdfs:label xml:lang="pt">Fatores de expocisao ao Risco</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#value"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SimilarityOfTheNanoparticleWithSubstancesOrAllergenicComponents -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SimilarityOfTheNanoparticleWithSubstancesOrAllergenicComponents">
+        <rdfs:label xml:lang="en">Similarity of the nanoparticle with substances or allergenic components</rdfs:label>
+        <rdfs:label xml:lang="pt">Similaridade do Nanopartícula com substâncias ou componentes alergênicos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#UnexpectedOcurrences"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SizeOfNanoparticles -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SizeOfNanoparticles">
+        <rdfs:label xml:lang="en">Size of nanoparticles less than 40 nm and its components</rdfs:label>
+        <rdfs:label xml:lang="pt">Tamanho da Nanoparticula menor que 40nm e de seus componentes</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Social -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Social">
+        <rdfs:label xml:lang="en">Social</rdfs:label>
+        <rdfs:label xml:lang="pt">Social</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory">
+        <rdfs:label xml:lang="en">Sugarcane processing optimization</rdfs:label>
+        <rdfs:label xml:lang="pt">Otimização do processamento da cana-de-açucar</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory">
+        <rdfs:label xml:lang="en">Sugarcane source category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria do origem da cana-de-acucar</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory">
+        <rdfs:label xml:lang="en">Sustainability category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de sustentabilidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator">
+        <rdfs:label xml:lang="en">Sustainability Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de sustentabilidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation">
+        <rdfs:label xml:lang="en">Technology Development Evaluation</rdfs:label>
+        <rdfs:label xml:lang="pt">Avaliação do Desenvolvimento da Tecnologia</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#TheCoatingHasReactivity -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#TheCoatingHasReactivity">
+        <rdfs:label xml:lang="en">The composition / coating has reactivity so that it can aggregate with other particles that were not foreseen in its development</rdfs:label>
+        <rdfs:label xml:lang="pt">A composição/revestimento possui reatividade de tal forma que possa agregar com outras partículas que não estavam previstas em seu desenvolvimento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#TheEmployedTechnologyCausesDamageToTheEnvironment -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#TheEmployedTechnologyCausesDamageToTheEnvironment">
+        <rdfs:label xml:lang="en">The employed technology causes damage to the environment</rdfs:label>
+        <rdfs:label xml:lang="pt">A tecnologia empregada causa prejuízos ao meio ambiente</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#TheNanoProductCausesInstabilityInTheEcosystem -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#TheNanoProductCausesInstabilityInTheEcosystem">
+        <rdfs:label xml:lang="en">The nano product causes instability in the ecosystem</rdfs:label>
+        <rdfs:label xml:lang="pt">O nanoproduto causa instabilidade no ecossistema</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#TheNanoparticlePenetrationRecordInHumanEpithelialBarrierToHealthRisk -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#TheNanoparticlePenetrationRecordInHumanEpithelialBarrierToHealthRisk">
+        <rdfs:label xml:lang="en">The nanoparticle penetration record in human epithelial barrier to health risk</rdfs:label>
+        <rdfs:label xml:lang="pt">Registro de penetração da Nanoártícula na barreira epitelial humana com risco à saúde</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#UnexpectedOcurrences -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UnexpectedOcurrences">
+        <rdfs:label xml:lang="en">Unexpected ocurrences</rdfs:label>
+        <rdfs:label xml:lang="pt">Ocorrencias inesperadas</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RiskExposureFactors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#UnfavorableResultsOfInVivoTestsToEvaluateTheAbsorption -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UnfavorableResultsOfInVivoTestsToEvaluateTheAbsorption">
+        <rdfs:label>distribution</rdfs:label>
+        <rdfs:label>Unfavorable results of in vivo tests to evaluate the absorption</rdfs:label>
+        <rdfs:label>distribuição</rdfs:label>
+        <rdfs:label>Resultado desfavorável dos testes in vivo para avaliar a absorção</rdfs:label>
+        <rdfs:label xml:lang="en">metabolism and excretion (ADME test) of nanoparticle present in food</rdfs:label>
+        <rdfs:label xml:lang="pt">metabolização e excreção (Teste ADME) da nanopartícula presente no alimento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#UnknownChemicalCharacteristic -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UnknownChemicalCharacteristic">
+        <rdfs:label xml:lang="en">The nanoparticle has unknown chemical characteristic</rdfs:label>
+        <rdfs:label xml:lang="pt">A nanopartícula possui característica química desconhecida</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#UseOfInorganicNanoparticlesWhichAccumulateInTheBody -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UseOfInorganicNanoparticlesWhichAccumulateInTheBody">
+        <rdfs:label xml:lang="en">Use of inorganic nanoparticles (base metal) which accumulate in the body</rdfs:label>
+        <rdfs:label xml:lang="pt">Utilização de Nanopartícula inorgânicas (a base de metais) que se acumulam no organismo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#FoodAndHumanHealth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#UsePersonalProtectiveEquipmentToPreventAccidents -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UsePersonalProtectiveEquipmentToPreventAccidents">
+        <rdfs:label xml:lang="en">Use Personal Protective Equipment (PPE) to prevent accidents</rdfs:label>
+        <rdfs:label xml:lang="pt">Utilização de Equipamento de Proteção Individual (EPI) para prevenção de acidentes</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Variable -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Variable">
+        <rdfs:label xml:lang="en">Variable</rdfs:label>
+        <rdfs:label xml:lang="pt">Variável</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#WaterSupplyPotentialContamination -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#WaterSupplyPotentialContamination">
+        <rdfs:label xml:lang="en">Water supply potential contamination</rdfs:label>
+        <rdfs:label xml:lang="pt">Potencial de contaminação da água de abastecimento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologyDevelopmentEvaluation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#YesNo -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#YesNo">
+        <rdfs:label xml:lang="en">Yes/No</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim/Não</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AdminRole -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#AdminRole">
+        <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#Role"/>
+        <rdfs:label xml:lang="en">Admin role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil administrador</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Brazil -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#Brazil">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/Country"/>
+        <rdfs:label xml:lang="en">Brazil</rdfs:label>
+        <rdfs:label xml:lang="pt">Brasil</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#FalseVal -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#FalseVal">
+        <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#Boolean"/>
+        <rdfs:label xml:lang="en">False</rdfs:label>
+        <rdfs:label xml:lang="pt">Falso</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TrueVal -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#TrueVal">
+        <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#Boolean"/>
+        <rdfs:label xml:lang="en">True</rdfs:label>
+        <rdfs:label xml:lang="pt">Verdadeiro</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UserRole -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#UserRole">
+        <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#Role"/>
+        <rdfs:label xml:lang="en">User role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil usuário</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/individuals#admin -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/individuals#admin">
+        <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
+        <rdfs:label xml:lang="en">admin</rdfs:label>
+        <rdfs:label xml:lang="pt">admin</rdfs:label>
+        <ui:hasPassword>2fff39c46a5818c2ca28975bc4d239a315a0df066ea5f8e923edae84c0397482</ui:hasPassword>
+        <ui:hasUsername>admin</ui:hasUsername>
+        <ui:hasRole rdf:resource="http://purl.org/biodiv/semanticUI#AdminRole"/>
+        <ui:hasRole rdf:resource="http://purl.org/biodiv/semanticUI#UserRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/individuals#user -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/individuals#user">
+        <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
+        <rdfs:label xml:lang="en">user</rdfs:label>
+        <rdfs:label xml:lang="pt">user</rdfs:label>
+        <ui:hasUsername>user</ui:hasUsername>
+        <ui:hasPassword>04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</ui:hasPassword>
+        <ui:hasRole rdf:resource="http://purl.org/biodiv/semanticUI#UserRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#DirectAlignment -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#DirectAlignment">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory"/>
+        <rdfs:label xml:lang="en">Direct</rdfs:label>
+        <rdfs:label xml:lang="pt">Direta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#DirectOptimization -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#DirectOptimization">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory"/>
+        <rdfs:label xml:lang="en">Direct</rdfs:label>
+        <rdfs:label xml:lang="pt">Direta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#DontExist -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#DontExist">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExistNo"/>
+        <rdfs:label xml:lang="en">Doesn&apos;t Exist</rdfs:label>
+        <rdfs:label xml:lang="pt">Não Existe</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Exist -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#Exist">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExistNo"/>
+        <rdfs:label xml:lang="en">Exist</rdfs:label>
+        <rdfs:label xml:lang="pt">Existe</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#IndirectAlignment -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#IndirectAlignment">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory"/>
+        <rdfs:label xml:lang="en">Indirect</rdfs:label>
+        <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#IndirectOptimization -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#IndirectOptimization">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory"/>
+        <rdfs:label xml:lang="en">Indirect</rdfs:label>
+        <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Irreversible -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#Irreversible">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ReversibilityCategory"/>
+        <rdfs:label xml:lang="en">Irreversible</rdfs:label>
+        <rdfs:label xml:lang="pt">Irreversível</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">8.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#LeaseOrigin -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#LeaseOrigin">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+        <rdfs:label xml:lang="en">Lease origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Arredamento / Parceria</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NoValue -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#NoValue">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NullAlignment -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#NullAlignment">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory"/>
+        <rdfs:label xml:lang="en">Null</rdfs:label>
+        <rdfs:label xml:lang="pt">Nula</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NullOptimization -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#NullOptimization">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory"/>
+        <rdfs:label xml:lang="en">Null</rdfs:label>
+        <rdfs:label xml:lang="pt">Nula</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#OwnOrigin -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#OwnOrigin">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+        <rdfs:label xml:lang="en">Own origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Própria</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Private -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#Private">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+        <rdfs:label xml:lang="en">Private</rdfs:label>
+        <rdfs:label xml:lang="pt">Privado</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Public -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#Public">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+        <rdfs:label xml:lang="en">Public</rdfs:label>
+        <rdfs:label xml:lang="pt">Público</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SugarcaneProductionSystem -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneProductionSystem">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+        <rdfs:label xml:lang="en">Sugarcane production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Sistema de produção de cana-de-açucar</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SupplierOrigin -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#SupplierOrigin">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+        <rdfs:label xml:lang="en">Supplier origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecedor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#YesValue -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#YesValue">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#averageExposure -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#averageExposure">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExposureToDamageCategory"/>
+        <rdfs:label xml:lang="en">Average Exposure to Damage</rdfs:label>
+        <rdfs:label xml:lang="pt">Média Exposição ao Dano</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#averageExtent -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#averageExtent">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExtentOfDamageCategory"/>
+        <rdfs:label xml:lang="en">Average Extent of damage</rdfs:label>
+        <rdfs:label xml:lang="pt">Média Extensão do Dano</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#averageMagnitude -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#averageMagnitude">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#MagnitudeCategory"/>
+        <rdfs:label xml:lang="en">Average Magnitude</rdfs:label>
+        <rdfs:label xml:lang="pt">Média Magnitude</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#highExposure -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#highExposure">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExposureToDamageCategory"/>
+        <rdfs:label xml:lang="en">High Exposure to Damage</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta Exposição ao Dano</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">4.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#highExtent -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#highExtent">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExtentOfDamageCategory"/>
+        <rdfs:label xml:lang="en">High Extent of damage</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta Extensão do Dano</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">4.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#highMagnitude -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#highMagnitude">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#MagnitudeCategory"/>
+        <rdfs:label xml:lang="en">High Magnitude</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta Magnitude</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">4.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#lessSustainable -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#lessSustainable">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory"/>
+        <rdfs:label xml:lang="en">Less sustainable</rdfs:label>
+        <rdfs:label xml:lang="pt">Menos sustentável</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#lowExposure -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#lowExposure">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExposureToDamageCategory"/>
+        <rdfs:label xml:lang="en">Low Exposure to Damage</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa Exposição ao Dano</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#lowExtent -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#lowExtent">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExtentOfDamageCategory"/>
+        <rdfs:label xml:lang="en">Low Extent of damage</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa Extensão do Dano</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#lowMagnitude -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#lowMagnitude">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#MagnitudeCategory"/>
+        <rdfs:label xml:lang="en">Low Magnitude</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa Magnitude</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#moreSustainable -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#moreSustainable">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory"/>
+        <rdfs:label xml:lang="en">More sustainable</rdfs:label>
+        <rdfs:label xml:lang="pt">Mais sustentável</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#reversibleComplexManagement -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#reversibleComplexManagement">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ReversibilityCategory"/>
+        <rdfs:label xml:lang="en">Reversible complex management</rdfs:label>
+        <rdfs:label xml:lang="pt">Reversível com manejo complexo (alto investimento ou uso de métodos não convencional à cultura)</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">4.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#reversibleNaturallyWithoutManagement -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#reversibleNaturallyWithoutManagement">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ReversibilityCategory"/>
+        <rdfs:label xml:lang="en">Reversible naturally without management</rdfs:label>
+        <rdfs:label xml:lang="pt">Reversível naturalmente sem manejo</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#reversibleWithSimpleHandling -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#reversibleWithSimpleHandling">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ReversibilityCategory"/>
+        <rdfs:label xml:lang="en">Reversible with simple handling</rdfs:label>
+        <rdfs:label xml:lang="pt">Reversível com manejo simples (substituição ou rotação de tecnologia por outra similar)</rdfs:label>
+        <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:dataValue>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.10-SNAPSHOT) http://owlapi.sourceforge.net -->
+
