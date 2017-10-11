@@ -15,7 +15,6 @@ class DSLController {
         dsls.eachFile { file ->
             data.push(file.getName().replaceFirst(~/\.[^\.]+$/, ''))
         }
-
         respond data
     }
 
@@ -23,13 +22,10 @@ class DSLController {
         def file = ctx.getResource("dsl/"+params.id+".groovy").file
         def data = [:]
 
-        if(file.exists()){
+        if(file.exists())
             data['dsl'] = file.text
-        }
-        else{
+        else
             data['error'] = 'No file found'
-        }
-
         respond data
     }
 
@@ -39,18 +35,15 @@ class DSLController {
         def file = ctx.getResource("dsl/"+id+".groovy").file
         def response = [:]
 
-        if(file.exists()){
+        if(file.exists()) {
             def result = dsl.reload(input.code)
             response['message'] = result.status
-            if(result.status == 'ok'){
+            if(result.status == 'ok')
                 file.write(input.code)
-            }else{
+            else
                 println result
-            }
-        }
-        else{
+        } else
             response['error'] = 'No file found'
-        }
 
         respond response
     }
