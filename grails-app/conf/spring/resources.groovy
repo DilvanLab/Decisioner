@@ -34,7 +34,8 @@ beans = {
     md(PegDownProcessor)
 
     k(Know, 'http://127.0.0.1:9999/blazegraph/namespace/kb/sparql')
-
+    //'http://localhost:7200/repositories/sustenagro')
+    //http://172.28.73.196:7200/repositories/sustenagro
     gui(GUIDSL, 'dsl/gui.groovy', grailsApplication.mainContext)
     dsl(DSL, 'dsl/main.groovy', grailsApplication.mainContext)
     admScript(ADMDSL, 'dsl/adm.groovy', grailsApplication.mainContext)

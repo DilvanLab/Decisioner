@@ -47,10 +47,11 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <asset:javascript src="bower_components/webcomponentsjs/webcomponents-lite.js"/>
-    <asset:link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html"/>
-    <asset:link rel="import" href="bower_components/sustainability-matrix/sustainability-matrix.html"/>
-    <asset:link rel="import" href="bower_components/sustainability-semaphore/sustainability-semaphore.html"/>
+    %{--<asset:javascript src="bower_components/webcomponentsjs/webcomponents-lite.js"/>--}%
+    %{--<asset:link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html"/>--}%
+    %{--<asset:link rel="import" href="bower_components/sustainability-matrix/sustainability-matrix.html"/>--}%
+    %{--<asset:link rel="import" href="bower_components/sustainability-semaphore/sustainability-semaphore.html"/>--}%
+    %{--<asset:link rel="import" href="bower_components/poly-matrix-master/matrix.html"/>--}%
 
 </head>
 <body>
