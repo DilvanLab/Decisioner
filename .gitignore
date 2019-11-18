@@ -21,7 +21,6 @@ target
 build
 out
 .gradle
-gradle
 
 # Ignore Blazegraph
 bigdata.jnl
